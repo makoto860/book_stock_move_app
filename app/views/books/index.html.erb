@@ -8,8 +8,10 @@
       <th>教科書の数</th>
       <th>棚の番号</th>
       <th>ISBN</th>
+      <th>備考欄</th>
       <th>更新日</th>
       <th>作成日</th>
+      <th>取り寄せ</th>
       <th>予約日</th>
       <th>注文日</th>
     </tr>
@@ -23,8 +25,10 @@
         <td><%= book.book_quantity %></td>
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
+        <td><%= book.note %></td>
         <td><%= book.updated_at %></td>
         <td><%= book.created_at %></td>
+        <td>取り寄せ欄</td>
         <td><%= book.reservation_date %></td>
         <td><%= book.order_date %></td>
       </tr>

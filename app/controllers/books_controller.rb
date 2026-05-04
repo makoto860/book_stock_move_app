@@ -4,9 +4,16 @@ class BooksController < ApplicationController
   end
 
   def new
+    @book = Book.new
   end
 
   def create
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to books_path, notice: "教科書を登録しました"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -19,5 +26,15 @@ class BooksController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(:title, :book_quantity, :rack_number, :isbn, :reservation_date, :order_date, :note)
   end
 end
