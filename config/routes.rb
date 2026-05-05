@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "stocks/index"
   get "stock_moves/index"
   devise_for :users
   resources :books do

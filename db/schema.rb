@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_05_161501) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_05_175411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,6 +47,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_05_161501) do
     t.index ["from_location_id"], name: "index_stock_moves_on_from_location_id"
     t.index ["move_type"], name: "index_stock_moves_on_move_type"
     t.index ["to_location_id"], name: "index_stock_moves_on_to_location_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "location_id", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "location_id"], name: "index_stocks_on_book_id_and_location_id", unique: true
+    t.index ["book_id"], name: "index_stocks_on_book_id"
+    t.index ["location_id"], name: "index_stocks_on_location_id"
   end
 
   create_table "users", force: :cascade do |t|
