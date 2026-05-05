@@ -8,12 +8,9 @@
       <th>教科書の数</th>
       <th>棚の番号</th>
       <th>ISBN</th>
-      <th>備考欄</th>
       <th>作成日</th>
       <th>更新日</th>
-      <th>取り寄せ</th>
-      <th>予約日</th>
-      <th>注文日</th>
+      <th>情報</th>
     </tr>
   </thead>
  
@@ -25,16 +22,9 @@
         <td><%= book.book_quantity %></td>
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
-        <td><%= book.note %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
         <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
-        <td>取り寄せ欄</td>
-        <td>
-          <%= book.reservation_date.present? ? I18n.l(book.reservation_date, format: :datetime_jp) : "" %>
-        </td>
-        <td>
-          <%= book.order_date.present? ? I18n.l(book.order_date, format: :datetime_jp) : "" %>
-        </td>
+        <td><%= link_to "教科書の情報", book %></td>
       </tr>
       <% end %>
   </tbody>

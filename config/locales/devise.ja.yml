@@ -3,3 +3,13 @@ ja:
     sessions:
       signed_in: "ログインしました"
       signed_out: "ログアウトしました"
+  activerecord:
+    attributes:
+      book:
+        title: "タイトル"
+        book_quantity: "教科書の数"
+        rack_number: "棚の番号"
+        isbn: "ISBN"
+  errors:
+    messages:
+      blank: "を入力してください"

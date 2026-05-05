@@ -1,5 +1,6 @@
 <h1>教科書を新しく作成,books/new.html.erb</h1>
 <%= form_with model: @book do |f| %>
+  <%= render 'shared/error_messages', model: @book %>
   <table>
     <tr>
       <th><%= f.label :title, "タイトル" %></th>
@@ -7,7 +8,7 @@
     </tr>
     <tr>
       <th><%= f.label :book_quantity, "教科書の数" %></th>
-      <td><%= f.number_field :book_quantity %></td>
+      <td><%= f.number_field :book_quantity, min: 0 %></td>
     </tr>
     <tr>
       <th><%= f.label :rack_number, "棚の番号" %></th>
@@ -20,17 +21,6 @@
     <tr>
       <th><%= f.label :note, "備考欄" %></th>
       <td><%= f.text_field :note %></td>
-    </tr>
-  </table>
-  <table>
-    <p>取り寄せの場合</p>
-    <tr>
-      <th><%= f.label :reservation_date, "予約日" %></th>
-      <td><%= f.datetime_field :reservation_date %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :order_date, "注文日" %></th>
-      <td><%= f.datetime_field :order_date %></td>
     </tr>
   </table>
   <div>
