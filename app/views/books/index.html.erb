@@ -27,10 +27,14 @@
         <td><%= book.isbn %></td>
         <td><%= book.note %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
-        <td><%= book.updated_at %></td>
+        <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
         <td>取り寄せ欄</td>
-        <td><%= book.reservation_date %></td>
-        <td><%= book.order_date %></td>
+        <td>
+          <%= book.reservation_date.present? ? I18n.l(book.reservation_date, format: :datetime_jp) : "" %>
+        </td>
+        <td>
+          <%= book.order_date.present? ? I18n.l(book.order_date, format: :datetime_jp) : "" %>
+        </td>
       </tr>
       <% end %>
   </tbody>
