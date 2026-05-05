@@ -1,0 +1,9 @@
+ja:
+  devise:
+    failure:
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      user:
+        not_found_in_database: "メールアドレスまたはパスワードが違います。"
+  time:
+    formats:
+      datetime_jp: "%Y年 %m月 %d日 %H時 %M分"
