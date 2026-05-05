@@ -11,6 +11,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
+      # 本の初期在庫を倉庫に入れる
+      StockInitializerService.call(
+        book: @book,
+        quantity: @book.book_quantity.to_i
+      )
       redirect_to books_path, notice: "教科書を登録しました"
     else
       render :new, status: :unprocessable_entity
