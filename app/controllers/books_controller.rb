@@ -18,6 +18,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @stock_move = @book.stock_moves.build
+    @warehouses = Location.where(kind: "warehouse")
+    @picks = Location.where(kind: "pick")
   end
 
   def edit

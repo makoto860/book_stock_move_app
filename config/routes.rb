@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :books
+  get "stock_moves/index"
   devise_for :users
+  resources :books do
+    resources :stock_moves, only: [:index, :new, :create]
+  end
   get "homes/top", to: 'homes#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

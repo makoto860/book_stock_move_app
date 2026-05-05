@@ -22,3 +22,15 @@
   </tr>
 </table>
 <p><%= link_to "教科書一覧", :books %></p>
+
+<p>在庫移動（倉庫 → ピック場）</p>
+<%= form_with model: [@book, StockMove.new], data: { turbo: false } do |f| %>
+  <%= f.hidden_field :move_type, value: "to_pick" %>
+  <div>
+    <%= f.label :quantity, "pick場に移動する本の数" %><br>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.submit "倉庫からpick場に在庫を移動する" %>
+  </div>
+<% end %>

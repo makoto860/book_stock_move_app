@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  has_many :stock_moves
   validates :title, presence: true
   validates :book_quantity, numericality: { greater_than_or_equal_to: 0 }
   validates :rack_number, presence: true
