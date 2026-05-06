@@ -24,9 +24,3 @@ pick = Location.find_or_create_by!(
   code: "PICK",
   kind: :pick
 )
-
-customer = Location.find_or_create_by!(
-  name: "お客様",
-  code: "CUSTOMER",
-  kind: :customer
-)

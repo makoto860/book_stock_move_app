@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :stock_moves, only: [:index, :new, :create]
   end
+  resources :stocks, only: [:index]
   get "homes/top", to: 'homes#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -3,7 +3,6 @@ class Location < ApplicationRecord
   enum :kind, {
     warehouse: 0,
     pick: 1,
-    customer: 2
   }, prefix: true
 
   def self.warehouse

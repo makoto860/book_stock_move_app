@@ -3,15 +3,21 @@ class StockTransferService
     ActiveRecord::Base.transaction do
       from_stock = Stock.find_by!(book: book, location: from_location)
       to_stock   = Stock.find_or_initialize_by(book: book, location: to_location)
-
-      from_stock.lock!
-
-      raise "在庫を移動したときに不足しています" if from_stock.quantity < quantity
-
-      from_stock.update!(quantity: from_stock.quantity - quantity)
-
       to_stock.quantity ||= 0
-      to_stock.update!(quantity: to_stock.quantity + quantity)
+
+      from_stock.with_lock do
+        raise "在庫不足です" if from_stock.quantity < quantity
+
+        from_stock.decrement!(:quantity, quantity)
+        to_stock.increment!(:quantity, quantity)
+      end
+
+      StockMove.create!(
+        book: book,
+        from_location: from_location,
+        to_location: to_location,
+        quantity: quantity
+      )
     end
   end
 end
