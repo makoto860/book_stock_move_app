@@ -3,4 +3,5 @@ class Stock < ApplicationRecord
   belongs_to :location
 
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
+  validates :book_id, uniqueness: { scope: :location_id }
 end

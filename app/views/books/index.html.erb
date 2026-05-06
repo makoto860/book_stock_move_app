@@ -5,7 +5,6 @@
     <tr>
       <th>id</th>
       <th>タイトル</th>
-      <th>教科書の数</th>
       <th>棚の番号</th>
       <th>ISBN</th>
       <th>作成日</th>
@@ -19,7 +18,6 @@
       <tr>
         <td><%= book.id %></td>
         <td><%= book.title %></td>
-        <td><%= book.book_quantity %></td>
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
