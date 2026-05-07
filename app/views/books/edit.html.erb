@@ -1,0 +1,28 @@
+<h1>教科書を編集する</h1>
+<%= form_with model: @book do |f| %>
+  <%= render 'shared/error_messages', model: @book %>
+  <table>
+    <tr>
+      <th><%= f.label :title, "タイトル" %></th>
+      <td><%= f.text_area :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :rack_number, "棚の番号" %></th>
+      <td><%= f.text_field :rack_number %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :isbn, "ISBN" %></th>
+      <td><%= f.text_field :isbn %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :note, "備考欄" %></th>
+      <td><%= f.text_area :note %></td>
+    </tr>
+  </table>
+  <div>
+    <ul>
+      <li><%= f.submit "教科書の編集を完了する" %></li>
+      <li><%= link_to "教科書の一覧", books_path %></li>
+    </ul>
+  </div>
+<% end %>

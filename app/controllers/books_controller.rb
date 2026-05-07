@@ -11,7 +11,6 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      # 本の初期在庫を倉庫に入れる
       StockInitializerService.call(
         book: @book,
         quantity: @book.book_quantity.to_i
@@ -32,6 +31,11 @@ class BooksController < ApplicationController
   end
 
   def update
+    if @book.update(book_params)
+      redirect_to books_path, notice: "教科書の情報を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -44,6 +48,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :book_quantity, :rack_number, :isbn, :reservation_date, :order_date, :note)
+    params.require(:book).permit(:title, :rack_number, :isbn, :note)
   end
 end

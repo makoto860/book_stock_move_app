@@ -3,26 +3,26 @@
 <table>
   <thead>
     <tr>
-      <th>id</th>
       <th>タイトル</th>
       <th>棚の番号</th>
       <th>ISBN</th>
       <th>作成日</th>
       <th>更新日</th>
       <th>情報</th>
+      <th>編集</th>
     </tr>
   </thead>
  
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.id %></td>
         <td><%= book.title %></td>
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
         <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
         <td><%= link_to "教科書の情報", book %></td>
+        <td><%= link_to "教科書の編集", [:edit, book] %></td>
       </tr>
       <% end %>
   </tbody>
