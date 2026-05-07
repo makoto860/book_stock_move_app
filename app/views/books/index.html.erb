@@ -1,5 +1,10 @@
-<h1>教科書一覧画面,app/views/books/index.html.erb</h1>
-<h2>教科書情報一覧</h2>
+<h1>教科書一覧,app/views/books/index.html.erb</h1>
+<%= form_with url: books_path, method: :get, local: true do |f| %>
+  <%= f.text_field :title, placeholder: "本のタイトル" %>
+  <%= f.submit "検索" %>
+<% end %>
+<%= link_to "作成日早い順", books_path(order: "desc") %>
+<%= link_to "作成日遅い順", books_path(order: "asc") %>
 <table>
   <thead>
     <tr>
