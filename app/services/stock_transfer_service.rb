@@ -13,8 +13,11 @@ class StockTransferService
       from_stock.with_lock do
         raise "在庫不足です" if from_stock.quantity < qty
 
-        from_stock.decrement!(:quantity, qty)
-        to_stock.increment!(:quantity, qty)
+        from_stock.quantity -= qty
+        to_stock.quantity += qty
+
+        from_stock.save!
+        to_stock.save!
       end
 
       StockMove.create!(

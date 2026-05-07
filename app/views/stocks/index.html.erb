@@ -1,16 +1,11 @@
-<h1>在庫一覧,stocks/index.html.erb</h1>
+<h1>現在の在庫一覧,stocks/index.html.erb</h1>
 <table>
-  <tr>
-    <th>タイトル</th>
-    <th>場所</th>
-    <th>在庫数</th>
-  </tr>
   <% @stocks.each do |stock| %>
-    <tr>
-      <td><%= stock.book.title %></td>
-      <td><%= stock.location.name %></td>
-      <td><%= stock.quantity %></td>
-    </tr>
+      <tr>
+        <td><%= stock.book.title %></td>
+        <td>場所の名前: <%= stock.location.name %></td>
+        <td>現在の数: <%= stock.quantity %></td>
+      </tr>
   <% end %>
 </table>
-<%= link_to "在庫を追加する", new_stock_path %>
+<%= link_to "教科書の在庫を追加する", new_stock_path %>

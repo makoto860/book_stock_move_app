@@ -2,7 +2,6 @@
 <table>
   <thead>
     <tr>
-      <th>作成日時</th>
       <th>本のタイトル</th>
       <th>移動元</th>
       <th>移動先</th>
@@ -12,7 +11,6 @@
   <tbody>
     <% @stock_moves.each do |move| %>
       <tr>
-        <td><%= move.created_at.strftime("%Y-%m-%d %H:%M") %></td>
         <td><%= move.book.title %></td>
         <td><%= move.from_location.name %></td>
         <td><%= move.to_location.name %></td>
@@ -21,4 +19,3 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to "在庫を移動する", new_stock_move_path %>

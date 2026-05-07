@@ -3,6 +3,7 @@ class Location < ApplicationRecord
   enum :kind, {
     warehouse: 0,
     pick: 1,
+    customer: 2,
   }, prefix: true
 
   def self.warehouse
@@ -11,5 +12,9 @@ class Location < ApplicationRecord
 
   def self.pick
     find_by!(kind: :pick)
+  end
+
+  def self.customer
+    find_by!(kind: :customer)
   end
 end

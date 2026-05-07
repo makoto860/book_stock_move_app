@@ -24,3 +24,10 @@ pick = Location.find_or_create_by!(
   code: "PICK",
   kind: :pick
 )
+
+# Customer（重要）
+customer = Location.find_or_create_by!(
+  name: "お客さん",
+  code: "CUSTOMER",
+  kind: :customer
+)
