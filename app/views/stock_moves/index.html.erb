@@ -1,1 +1,25 @@
 <h1>在庫移動履歴一覧,stock_moves/index.html.erb</h1>
+<table>
+  <thead>
+    <tr>
+      <th>作成日時</th>
+      <th>本のタイトル</th>
+      <th>移動元</th>
+      <th>移動先</th>
+      <th>移動した数</th>
+      <th>在庫の数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_moves.each do |move| %>
+      <tr>
+        <td><%= move.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= move.book.title %></td>
+        <td><%= move.from_location.name %></td>
+        <td><%= move.to_location.name %></td>
+        <td><%= move.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "在庫を移動する", new_stock_move_path %>

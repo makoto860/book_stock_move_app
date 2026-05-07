@@ -21,7 +21,8 @@ class StockTransferService
         book: book,
         from_location: from,
         to_location: to,
-        quantity: qty
+        quantity: qty,
+        move_type: :transfer
       )
     end
   end
