@@ -1,5 +1,5 @@
 <h1>在庫移動,stock_moves/new.html.erb</h1>
-<%= form_with model: @stock_move do |f| %>
+<%= form_with model: @stock_move, url: confirm_stock_moves_path, data: { turbo: false } do |f| %>
   <div>
     <%= f.label :book_id, "本" %><br>
     <%= f.collection_select :book_id, @books, :id, :title %>
@@ -13,11 +13,11 @@
     <%= f.collection_select :to_location_id, @locations, :id, :name %>
   </div>
   <div>
-    <%= f.label :quantity, "数量" %><br>
+    <%= f.label :quantity, "数" %><br>
     <%= f.number_field :quantity, min: 1 %>
   </div>
   <div>
     <%= f.submit "移動する" %>
   </div>
 <% end %>
-<%= link_to "一覧へ戻る", stock_moves_path %>
+<%= link_to "在庫移動履歴", stock_moves_path %>

@@ -15,6 +15,11 @@ class StockMovesController < ApplicationController
     redirect_to stock_moves_path, notice: "在庫を移動しました"
   end
 
+  def confirm
+    @stock_move = StockMove.new(stock_move_params)
+    @book = Book.find(@stock_move.book_id)
+  end
+
   private
 
   def stock_move_params
