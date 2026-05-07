@@ -39,6 +39,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    @book.destroy
+    flash[:notice] = "削除しました"
+    redirect_to books_path
   end
 
   private

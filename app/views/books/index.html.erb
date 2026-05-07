@@ -10,6 +10,7 @@
       <th>更新日</th>
       <th>情報</th>
       <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
  
@@ -23,6 +24,7 @@
         <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
         <td><%= link_to "教科書の情報", book %></td>
         <td><%= link_to "教科書の編集", [:edit, book] %></td>
+        <td><%= link_to "削除", book, data: { turbo_method: :delete, turbo_confirm: "教科書を削除しますか？" } %></td>
       </tr>
       <% end %>
   </tbody>
