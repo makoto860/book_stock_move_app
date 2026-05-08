@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "homes/top", to: 'homes#top'
   devise_for :users
   resources :books
   resources :stock_moves, only: [:index, :new, :create] do
@@ -18,7 +19,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
+  root "homes#top"
 end

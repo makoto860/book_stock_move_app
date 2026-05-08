@@ -1,4 +1,4 @@
-<h1>現在の在庫一覧,stocks/index.html.erb</h1>
+<h1>現在の在庫一覧</h1>
 <%= form_with url: stocks_path, method: :get, local: true do %>
   <%= text_field_tag :q, params[:q], placeholder: "タイトル検索" %>
   <%= submit_tag "検索" %>

@@ -1,5 +1,4 @@
 /* devise.css */
-/* devise/new_sessions/new */
 .devise-container {
   text-align: center;
 }
@@ -11,6 +10,7 @@
   box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
 .devise-container input[type="submit"] {
@@ -21,12 +21,13 @@
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
-.new_registration-bottun a {
+.devise-bottun a {
   color: #fff;
   background-color: #404849;
-  font-size: 15px;
+  font-size: 20px;
   border-radius: 20px;
   padding: 10px;
   text-decoration: none;
