@@ -8,6 +8,29 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/*application.html.erb*/
+header {
+  background-color: #404849;
+  text-align: center;
+  color: #fff;
+}
+
+.nav {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.link-list a {
+  color: white;
+  text-decoration: none;
+}
+
+.link-list {
+  gap: 60px;
+  list-style: none;
+  display: flex;
+}
+
 .text-red {
   color: red;
   font-weight: bold;

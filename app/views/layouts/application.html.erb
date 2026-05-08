@@ -30,7 +30,8 @@
         <p class="alert"><%= flash[:alert] %></p>
       <% end %>
 
-      <ul>
+      <div class="nav">contents</div>
+      <ul class="link-list">
         <li><%= link_to "HOME", root_path %></li>
         <% if user_signed_in? %>
           <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" } %></li>
