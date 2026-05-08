@@ -1,0 +1,33 @@
+/* devise.css */
+/* devise/new_sessions/new */
+.devise-container {
+  text-align: center;
+}
+
+.devise-container input[type="email"],
+.devise-container input[type="password"] {
+  width: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.devise-container input[type="submit"] {
+  background-color: #16a34a;
+  font-size: 19px;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.new_registration-bottun a {
+  color: #fff;
+  background-color: #404849;
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-decoration: none;
+}

@@ -3,7 +3,7 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p><%= link_to "新しくアカウントを作成する", new_registration_path(resource_name) %></p>
+  <p class="new_registration-bottun"><%= link_to "新しくアカウントを作成する", new_registration_path(resource_name) %></p>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
