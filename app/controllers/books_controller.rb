@@ -3,6 +3,8 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @books = @books.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    @books = @books.where("isbn LIKE ?", "%#{params[:isbn]}%") if params[:isbn].present?
+    @books = @books.where("rack_number LIKE ?", "%#{params[:rack_number]}%") if params[:rack_number].present?
     direction = params[:order] == "asc" ? :asc : :desc
     @books = @books.order(created_at: direction)
   end

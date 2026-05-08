@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   def index
-    @stocks = Stock.includes(:book, :location)
+    @stocks = Stock.includes(:book, :location).order(created_at: :desc)
   end
 
   def new

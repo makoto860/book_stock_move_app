@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :stocks
+  has_many :stocks, dependent: :destroy
   enum :kind, {
     warehouse: 0,
     pick: 1,

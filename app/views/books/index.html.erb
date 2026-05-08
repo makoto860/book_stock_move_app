@@ -1,6 +1,8 @@
 <h1>教科書一覧,app/views/books/index.html.erb</h1>
 <%= form_with url: books_path, method: :get, local: true do |f| %>
   <%= f.text_field :title, placeholder: "本のタイトル" %>
+  <%= f.text_field :isbn, placeholder: "ISBN" %>
+  <%= f.text_field :rack_number, placeholder: "棚番号" %>
   <%= f.submit "検索" %>
 <% end %>
 <%= link_to "作成日早い順", books_path(order: "desc") %>
