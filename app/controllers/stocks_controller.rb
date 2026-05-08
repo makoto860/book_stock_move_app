@@ -1,6 +1,9 @@
 class StocksController < ApplicationController
   def index
     @stocks = Stock.includes(:book, :location).order(created_at: :desc)
+    if params[:q].present?
+      @stocks = @stocks.joins(:book).where("books.title LIKE ?", "%#{params[:q]}%")
+    end
   end
 
   def new

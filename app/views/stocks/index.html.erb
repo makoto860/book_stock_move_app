@@ -1,10 +1,24 @@
 <h1>現在の在庫一覧,stocks/index.html.erb</h1>
+<%= form_with url: stocks_path, method: :get, local: true do %>
+  <%= text_field_tag :q, params[:q], placeholder: "タイトル検索" %>
+  <%= submit_tag "検索" %>
+<% end %>
 <table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>場所の名前:</th>
+      <th>現在の数</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+
   <% @stocks.each do |stock| %>
       <tr>
         <td><%= stock.book.title %></td>
-        <td>場所の名前: <%= stock.location.name %></td>
-        <td>現在の数: <%= stock.quantity %></td>
+        <td><%= stock.location.name %></td>
+        <td><%= stock.quantity %></td>
+        <td><%= I18n.l(stock.created_at, format: :datetime_jp) %></td>
       </tr>
   <% end %>
 </table>
