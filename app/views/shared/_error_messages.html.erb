@@ -1,0 +1,10 @@
+<h1>エラーメッセージ画面,shared/_error_messages.html.erb</h1>
+<% if model.errors.any? %>
+  <div class="error-messages">
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

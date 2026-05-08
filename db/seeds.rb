@@ -12,3 +12,22 @@ User.find_or_create_by!(email: "test@example.com") do |user|
   user.password = "password"
   user.password_confirmation = "password"
 end
+
+warehouse = Location.find_or_create_by!(
+  name: "倉庫",
+  code: "WAREHOUSE",
+  kind: :warehouse
+)
+
+pick = Location.find_or_create_by!(
+  name: "PICK場",
+  code: "PICK",
+  kind: :pick
+)
+
+# Customer（重要）
+customer = Location.find_or_create_by!(
+  name: "お客さん",
+  code: "CUSTOMER",
+  kind: :customer
+)

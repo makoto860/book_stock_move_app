@@ -1,40 +1,37 @@
-<h1>教科書一覧画面,app/views/books/index.html.erb</h1>
-<h2>教科書情報一覧</h2>
+<h1>教科書一覧,app/views/books/index.html.erb</h1>
+<%= form_with url: books_path, method: :get, local: true do |f| %>
+  <%= f.text_field :title, placeholder: "本のタイトル" %>
+  <%= f.text_field :isbn, placeholder: "ISBN" %>
+  <%= f.text_field :rack_number, placeholder: "棚番号" %>
+  <%= f.submit "検索" %>
+<% end %>
+<%= link_to "作成日早い順", books_path(order: "desc") %>
+<%= link_to "作成日遅い順", books_path(order: "asc") %>
 <table>
   <thead>
     <tr>
-      <th>id</th>
       <th>タイトル</th>
-      <th>教科書の数</th>
       <th>棚の番号</th>
       <th>ISBN</th>
-      <th>備考欄</th>
       <th>作成日</th>
       <th>更新日</th>
-      <th>取り寄せ</th>
-      <th>予約日</th>
-      <th>注文日</th>
+      <th>情報</th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
  
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.id %></td>
         <td><%= book.title %></td>
-        <td><%= book.book_quantity %></td>
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
-        <td><%= book.note %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
         <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
-        <td>取り寄せ欄</td>
-        <td>
-          <%= book.reservation_date.present? ? I18n.l(book.reservation_date, format: :datetime_jp) : "" %>
-        </td>
-        <td>
-          <%= book.order_date.present? ? I18n.l(book.order_date, format: :datetime_jp) : "" %>
-        </td>
+        <td><%= link_to "教科書の情報", book %></td>
+        <td><%= link_to "教科書の編集", [:edit, book] %></td>
+        <td><%= link_to "削除", book, data: { turbo_method: :delete, turbo_confirm: "教科書を削除しますか？" } %></td>
       </tr>
       <% end %>
   </tbody>

@@ -1,6 +1,12 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
   def index
     @books = Book.all
+    @books = @books.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    @books = @books.where("isbn LIKE ?", "%#{params[:isbn]}%") if params[:isbn].present?
+    @books = @books.where("rack_number LIKE ?", "%#{params[:rack_number]}%") if params[:rack_number].present?
+    direction = params[:order] == "asc" ? :asc : :desc
+    @books = @books.order(created_at: direction)
   end
 
   def new
@@ -10,6 +16,10 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
+      StockInitializerService.call(
+        book: @book,
+        quantity: @book.book_quantity.to_i
+      )
       redirect_to books_path, notice: "教科書を登録しました"
     else
       render :new, status: :unprocessable_entity
@@ -17,15 +27,26 @@ class BooksController < ApplicationController
   end
 
   def show
+    @stock_move = @book.stock_moves.build
+    @warehouses = Location.where(kind: "warehouse")
+    @picks = Location.where(kind: "pick")
   end
 
   def edit
   end
 
   def update
+    if @book.update(book_params)
+      redirect_to books_path, notice: "教科書の情報を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @book.destroy
+    flash[:notice] = "削除しました"
+    redirect_to books_path
   end
 
   private
@@ -35,6 +56,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :book_quantity, :rack_number, :isbn, :reservation_date, :order_date, :note)
+    params.require(:book).permit(:title, :rack_number, :isbn, :note)
   end
 end
