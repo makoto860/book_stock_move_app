@@ -9,6 +9,7 @@
  * Consider organizing styles into separate files for maintainability.
  */
 @import "devise";
+@import "top";
 /*application.html.erb*/
 header {
   background-color: #404849;

@@ -1,0 +1,7 @@
+.top-container {
+  background-image: image-url("top_book.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+}
