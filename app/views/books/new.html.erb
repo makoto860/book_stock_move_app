@@ -18,6 +18,18 @@
       <th><%= f.label :note, "備考欄" %></th>
       <td><%= f.text_field :note %></td>
     </tr>
+    <tr>
+      <th></th>
+      <td>取り寄せの場合</td>
+    </tr>
+    <tr>
+      <th><%= f.label :order_date_time, "注文日時" %></th>
+      <td><%= f.datetime_field :order_date_time %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :special_order_date_time, "取り寄せ日時" %></th>
+      <td><%= f.datetime_field :special_order_date_time %></td>
+    </tr>
   </table>
   <div>
     <ul>
