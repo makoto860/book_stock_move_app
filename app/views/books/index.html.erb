@@ -14,7 +14,7 @@
       <th>棚の番号</th>
       <th>ISBN</th>
       <th>作成日</th>
-      <th>更新日</th>
+      <th>取り寄せ</th>
       <th>情報</th>
       <th>編集</th>
       <th>削除</th>
@@ -28,7 +28,7 @@
         <td><%= book.rack_number %></td>
         <td><%= book.isbn %></td>
         <td><%= I18n.l(book.created_at, format: :datetime_jp) %></td>
-        <td><%= I18n.l(book.updated_at, format: :datetime_jp) %></td>
+        <td><%= book_status_icon(book) %></td>
         <td><%= link_to "教科書の情報", book %></td>
         <td><%= link_to "教科書の編集", [:edit, book] %></td>
         <td><%= link_to "削除", book, data: { turbo_method: :delete, turbo_confirm: "教科書を削除しますか？" } %></td>
