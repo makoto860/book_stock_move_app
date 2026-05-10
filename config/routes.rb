@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get "homes/top", to: 'homes#top'
+  get "homes/top", to: "homes#top"
   devise_for :users
   resources :books
-  resources :stock_moves, only: [:index, :new, :create] do
+  resources :stock_moves, only: [ :index, :new, :create ] do
     collection do
       post :confirm
     end
   end
-  resources :stocks, only: [:index, :new, :create]
+  resources :stocks, only: [ :index, :new, :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
