@@ -1,3 +1,4 @@
+<div class="devise-container">
 <h1>ユーザー編集画面</h1>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -10,10 +11,10 @@
   <% end %>
   <div class="field">
     <p><%= f.label :新しいパスワード %> <i>(変更しない場合は空欄のままにしてください)</i></p>
-    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
     <% if @minimum_password_length %>
       <p>パスワードは<em><%= @minimum_password_length %>文字以上</em></p>
     <% end %>
+    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
   </div>
 
   <div class="field">
@@ -30,4 +31,5 @@
     <%= f.submit "ユーザーを編集する" %>
   </div>
 <% end %>
-<%= link_to "戻る", :back %>
+<p class="devise-bottun"><%= link_to "戻る", :back %><p>
+</div>

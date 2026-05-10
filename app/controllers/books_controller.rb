@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [ :show, :edit, :update, :destroy ]
   def index
     @books = Book.all
     @books = @books.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
@@ -56,6 +56,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :rack_number, :isbn, :note)
+    params.require(:book).permit(:title, :rack_number, :isbn, :note, :order_date_time, :special_order_date_time)
   end
 end

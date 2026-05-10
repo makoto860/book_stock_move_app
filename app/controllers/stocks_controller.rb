@@ -1,9 +1,25 @@
 class StocksController < ApplicationController
   def index
-    @stocks = Stock.includes(:book, :location).order(created_at: :desc)
+    @stocks = Stock.includes(:book, :location)
     if params[:q].present?
-      @stocks = @stocks.joins(:book).where("books.title LIKE ?", "%#{params[:q]}%")
+      q = params[:q]
+      @stocks = @stocks.joins(:book)
+      if q.match?(/\A\d+\z/)
+        @stocks = @stocks.where("books.title LIKE :q OR stocks.quantity = :quantity", q: "%#{q}%", quantity: q.to_i)
+      else
+        @stocks = @stocks.where("books.title LIKE ?", "%#{q}%")
+      end
     end
+
+    @stocks =
+      case params[:sort]
+      when "quantity_desc"
+        @stocks.order(quantity: :desc)
+      when "quantity_asc"
+        @stocks.order(quantity: :asc)
+      else
+        @stocks.order(created_at: :desc)
+      end
   end
 
   def new

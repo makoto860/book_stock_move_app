@@ -1,28 +1,32 @@
 <h1>教科書を編集する</h1>
 <%= form_with model: @book do |f| %>
   <%= render 'shared/error_messages', model: @book %>
-  <table>
+  <table class="books-table">
     <tr>
       <th><%= f.label :title, "タイトル" %></th>
-      <td><%= f.text_area :title %></td>
+      <td><%= f.text_field :title, class: "books-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :rack_number, "棚の番号" %></th>
-      <td><%= f.text_field :rack_number %></td>
+      <td><%= f.text_field :rack_number, class: "books-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :isbn, "ISBN" %></th>
-      <td><%= f.text_field :isbn %></td>
+      <td><%= f.text_field :isbn, class: "books-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :note, "備考欄" %></th>
-      <td><%= f.text_area :note %></td>
+      <td><%= f.text_area :note, class: "books-input" %></td>
     </tr>
+    <tr>
+      <th><%= f.label :order_date_time, "注文日時" %></th>
+      <td><%= f.datetime_field :order_date_time %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :special_order_date_time, "取り寄せ日時" %></th>
+      <td><%= f.datetime_field :special_order_date_time %></td>
+  </tr>
   </table>
-  <div>
-    <ul>
-      <li><%= f.submit "教科書の編集を完了する" %></li>
-      <li><%= link_to "教科書の一覧", books_path %></li>
-    </ul>
-  </div>
+    <%= f.submit "教科書の編集を完了する", class: "books-button" %>
+    <p class="books-link"><%= link_to "教科書の一覧に戻る", books_path %>
 <% end %>

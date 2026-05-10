@@ -1,0 +1,85 @@
+.books-container {
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.books-search {
+  background-color: #007bff;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.search-field input {
+  width: 220px;
+  height: 30px;
+}
+
+.search-button {
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.sort-book-link-list a {
+  background-color: #404849;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.books-table {
+  width: 90%;
+  margin: 0px auto;
+  margin-top: 30px;
+}
+
+.books-table th,
+.books-table td {
+  text-align: center;
+  border-bottom: 3px solid #ddd;
+  padding: 12px;
+}
+
+.books-table th {
+  background-color: #404849;
+  color: #fff;
+}
+
+.books-link a {
+  background-color: #404849;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 45%;
+}
+
+.books-button {
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 45%;
+}
+
+.books-input {
+  width: 75%;
+}
