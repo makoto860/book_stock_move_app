@@ -10,7 +10,7 @@ module BooksHelper
 
   def book_table_style(book)
     if book.invalid_order_timing?
-      "background-color: #00ffff; font-weight: bold;"
+      "background-color: #00ffff;"
     end
   end
 end

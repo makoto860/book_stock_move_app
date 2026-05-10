@@ -1,5 +1,5 @@
 <h1>教科書の情報</h1>
-<table style="<%= book_table_style(@book) %>">
+<table class="books-table", style="<%= book_table_style(@book) %>">
   <tr>
     <th>本のID</th>
     <td><%= @book.id %></td>
@@ -39,4 +39,4 @@
     </td>
   </tr>
 </table>
-<p><%= link_to "教科書一覧", :books %></p>
+<p class="books-link"><%= link_to "教科書一覧", books_path %></p>
