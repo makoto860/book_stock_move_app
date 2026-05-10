@@ -1,5 +1,4 @@
 class StockInitializerService
-  # 初期在庫作成
   def self.call(book:, quantity:)
     warehouse = Location.find_by!(kind: :warehouse)
     pick      = Location.find_by!(kind: :pick)
