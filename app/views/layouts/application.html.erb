@@ -37,9 +37,10 @@
           <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" } %></li>
           <li><%= link_to "ユーザー編集する", edit_user_registration_path %></li>
           <li><%= link_to "教科書一覧", books_path %></li>
+          <li><%= link_to "教科書の在庫を追加する", new_stock_path %></li>
+          <li><%= link_to "教科書の在庫を移動する", new_stock_move_path %></li>
           <li><%= link_to "現在の在庫一覧", stocks_path %></li>
           <li><%= link_to "在庫の移動した履歴を見る", stock_moves_path %></li>
-          <li><%= link_to "在庫を移動する", new_stock_move_path %></li>
         <% else %>
           <li><%= link_to "新しくアカウントを作成する", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>

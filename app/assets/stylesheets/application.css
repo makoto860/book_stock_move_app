@@ -28,7 +28,7 @@ header {
   gap: 60px;
   list-style: none;
   display: flex;
-  margin-left: 25%;
+  margin-left: 50px;
 }
 
 /*stocks/index.html.erb*/
