@@ -64,5 +64,22 @@
   padding: 10px 20px;
   font-size: 15px;
   font-weight: bold;
-  margin-left: 290px;
+  margin-left: 45%;
+}
+
+.books-button {
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 45%;
+}
+
+.new-input {
+  width: 75%;
 }

@@ -1,22 +1,22 @@
 <h1>教科書を新しく作成</h1>
 <%= form_with model: @book do |f| %>
   <%= render 'shared/error_messages', model: @book %>
-  <table>
+  <table class="books-table">
     <tr>
       <th><%= f.label :title, "タイトル" %></th>
-      <td><%= f.text_field :title %></td>
+      <td><%= f.text_field :title, class: "new-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :rack_number, "棚の番号" %></th>
-      <td><%= f.text_field :rack_number %></td>
+      <td><%= f.text_field :rack_number, class: "new-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :isbn, "ISBN" %></th>
-      <td><%= f.text_field :isbn %></td>
+      <td><%= f.text_field :isbn, class: "new-input" %></td>
     </tr>
     <tr>
       <th><%= f.label :note, "備考欄" %></th>
-      <td><%= f.text_field :note %></td>
+      <td><%= f.text_field :note, class: "new-input" %></td>
     </tr>
     <tr>
       <th></th>
@@ -31,10 +31,6 @@
       <td><%= f.datetime_field :special_order_date_time %></td>
     </tr>
   </table>
-  <div>
-    <ul>
-      <li><%= f.submit "教科書を登録する"%></li>
-      <li><%= link_to "教科書一覧に戻る", :books %></li>
-    </ul>
-  </div>
+  <%= f.submit "教科書を登録する", class: "books-button" %>
+  <p class="books-link"><%= link_to "教科書一覧に戻る", books_path %></p>
 <% end %>

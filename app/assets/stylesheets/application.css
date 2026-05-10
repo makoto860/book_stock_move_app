@@ -33,7 +33,7 @@ header {
 
 /*stocks/index.html.erb*/
 .text-red {
-  color: red;
+  color: #FF0033;
   font-weight: bold;
 }
 
