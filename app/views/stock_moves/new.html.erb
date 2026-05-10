@@ -14,7 +14,7 @@
   </div>
   <div>
     <%= f.label :quantity, "数" %><br>
-    <%= f.number_field :quantity, min: 1 %>
+    <%= f.number_field :quantity, min: 1, required: true %>
   </div>
   <div>
     <%= f.submit "移動する" %>
