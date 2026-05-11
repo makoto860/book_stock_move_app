@@ -1,10 +1,9 @@
-# README
+# ポートフォリオの概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Railsを用いて開発した在庫移動管理アプリです。
+倉庫・Pick場・お客様間での在庫数や在庫移動を一元管理できるように設計しました。
 
-Things you may want to cover:
-
+# の概要
 * Ruby version
 
 * System dependencies
