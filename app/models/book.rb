@@ -11,4 +11,14 @@ class Book < ApplicationRecord
 
     special_order_date_time < order_date_time
   end
+
+  def formatted_order_date_time
+    return nil unless order_date_time.present?
+    I18n.l(order_date_time, format: :datetime_jp)
+  end
+
+  def formatted_special_order_date_time
+    return nil unless special_order_date_time.present?
+    I18n.l(special_order_date_time, format: :datetime_jp)
+  end
 end

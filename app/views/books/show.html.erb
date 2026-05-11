@@ -30,13 +30,11 @@
   </tr>
   <tr>
     <th>注文日時</th>
-    <td><%= I18n.l(@book.order_date_time, format: :datetime_jp) %></td>
+    <td><%= @book.formatted_order_date_time %></td>
   </tr>
   <tr>
     <th>取り寄せ日時</th>
-    <td>
-      <%= I18n.l(@book.special_order_date_time, format: :datetime_jp) %>
-    </td>
+    <td><%= @book.formatted_special_order_date_time %></td>
   </tr>
 </table>
 <p class="books-link"><%= link_to "教科書一覧", books_path %></p>
