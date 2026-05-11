@@ -7,7 +7,16 @@ Ruby on Railsを用いて開発した在庫移動管理アプリです。
 アルバイトでピッキング作業を行っていた際、商品の補充時に在庫数が正確に把握できず、作業効率が下がる場面がありました。
 在庫の数が明確であれば、補充判断がスムーズになると感じ、この課題を解決するために作成しました。
 
-* System dependencies
+# 使用技術
+Ruby
+Ruby on Rails
+PostgreSQL
+HTML,CSS
+GitHub
+Docker
+Heroku
+
+# 力を入れた点
 
 * Configuration
 
