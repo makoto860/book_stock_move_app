@@ -83,3 +83,8 @@
 .books-input {
   width: 75%;
 }
+
+.books-link-RUD a {
+  color: #9900CC;
+  text-decoration: none;
+}

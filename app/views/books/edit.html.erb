@@ -19,13 +19,13 @@
       <td><%= f.text_area :note, class: "books-input" %></td>
     </tr>
     <tr>
+      <th><%= f.label :special_order_date_time, "取り寄せ日時" %></th>
+      <td><%= f.datetime_field :special_order_date_time %></td>
+    </tr>
+    <tr>
       <th><%= f.label :order_date_time, "注文日時" %></th>
       <td><%= f.datetime_field :order_date_time %></td>
     </tr>
-    <tr>
-      <th><%= f.label :special_order_date_time, "取り寄せ日時" %></th>
-      <td><%= f.datetime_field :special_order_date_time %></td>
-  </tr>
   </table>
     <%= f.submit "教科書の編集を完了する", class: "books-button" %>
     <p class="books-link"><%= link_to "教科書の一覧に戻る", books_path %>
