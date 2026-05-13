@@ -12,8 +12,39 @@ pg→herokuのDBを使用するためPostgreSQLを使用
 <br>
 rails-i18n→わかりやすくなるようにRailsの日本語化対応に使用
 
-# ポートフォリオの概要
+# ER図
 
+```mermaid
+erDiagram
+
+    USERS {
+        bigint id PK
+        string email
+        string encrypted_password
+    }
+
+    TEXTBOOKS {
+        bigint id PK
+        string title
+        string subject
+        text description
+    }
+
+    LOCATIONS {
+        bigint id PK
+        string name
+    }
+
+    INVENTORIES {
+        bigint id PK
+        bigint textbook_id FK
+        bigint location_id FK
+        integer quantity
+    }
+
+    USERS ||--o{ TEXTBOOKS : manages
+    TEXTBOOKS ||--o{ INVENTORIES : has
+    LOCATIONS ||--o{ INVENTORIES : stores
 # このポートフォリオを作成した理由
 アルバイトでピッキング作業を行っていた際、商品の補充時に在庫数が正確に把握できず、作業効率が下がる場面がありました。
 在庫の数が明確であれば、補充判断がスムーズになると感じ、この課題を解決するために作成しました。
