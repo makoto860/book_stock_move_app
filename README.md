@@ -62,16 +62,18 @@ STOCK_MOVES {
   datetime updated_at
 }
 
-    INVENTORIES {
-        bigint id PK
-        bigint textbook_id FK
-        bigint location_id FK
-        integer quantity
-    }
+STOCKS {
+    bigint id PK
+    bigint book_id FK
+    bigint location_id FK
+    integer quantity
+    datetime created_at
+    datetime updated_at
+}
 
-    USERS ||--o{ TEXTBOOKS : manages
-    TEXTBOOKS ||--o{ INVENTORIES : has
-    LOCATIONS ||--o{ INVENTORIES : stores
+USERS ||--o{ TEXTBOOKS : manages
+TEXTBOOKS ||--o{ INVENTORIES : has
+LOCATIONS ||--o{ INVENTORIES : stores
 ```
 
 # このポートフォリオを作成した理由
