@@ -18,6 +18,7 @@ PostgreSQL
 HTML,CSS
 devise
 GitHub
+CircleCI
 Docker
 Heroku
 
