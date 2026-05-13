@@ -29,11 +29,19 @@ USERS {
 }
 
 BOOKS {
-        bigint id PK
-        string title
-        string subject
-        text description
-    }
+    bigint id PK
+    string title
+    integer book_quantity
+    string rack_number
+    string isbn
+    datetime reservation_date
+    datetime order_date
+    datetime order_date_time
+    datetime special_order_date_time
+    text note
+    datetime created_at
+    datetime updated_at
+}
 
     LOCATIONS {
         bigint id PK
