@@ -51,6 +51,17 @@ LOCATIONS {
   datetime updated_at
 }
 
+STOCK_MOVES {
+  bigint id PK
+  bigint book_id FK
+  bigint from_location_id FK
+  bigint to_location_id FK
+  integer quantity
+  string move_type
+  datetime created_at
+  datetime updated_at
+}
+
     INVENTORIES {
         bigint id PK
         bigint textbook_id FK
