@@ -7,9 +7,9 @@ Ruby on Railsを用いて開発した在庫移動管理アプリです。
 
 # 使用したgem
 devise→ユーザー認証機能の実装に使用
-pg→
-PostgreSQLを使用するためのGem
-
+<br>
+pg→PostgreSQLを使用するためのGem
+<br>
 rails-i18n→Railsの日本語化対応に使用
 
 # ポートフォリオの概要
