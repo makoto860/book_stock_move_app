@@ -13,10 +13,10 @@ Ruby on Railsを用いて開発した在庫移動管理アプリです。
 在庫の数が明確であれば、補充判断がスムーズになると感じ、この課題を解決するために作成しました。
 
 # 使用技術
-Ruby
 Ruby on Rails 8.0.5
 PostgreSQL
 HTML,CSS
+devise
 GitHub
 Docker
 Heroku
