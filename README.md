@@ -14,7 +14,7 @@ Ruby on Railsを用いて開発した在庫移動管理アプリです。
 
 # 使用技術
 Ruby
-Ruby on Rails
+Ruby on Rails 8.0.5
 PostgreSQL
 HTML,CSS
 GitHub
