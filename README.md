@@ -26,8 +26,9 @@ USERS {
   remember_created_at datetime
   created_at datetime
   updated_at datetime
-
 }
+
+erDiagram
 
 BOOKS {
     bigint id PK
