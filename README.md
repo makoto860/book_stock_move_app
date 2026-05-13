@@ -71,9 +71,11 @@ STOCKS {
     datetime updated_at
 }
 
-USERS ||--o{ TEXTBOOKS : manages
-TEXTBOOKS ||--o{ INVENTORIES : has
-LOCATIONS ||--o{ INVENTORIES : stores
+BOOKS ||--o{ STOCKS : has
+LOCATIONS ||--o{ STOCKS : stores
+
+BOOKS ||--o{ STOCK_MOVES : moves
+LOCATIONS ||--o{ STOCK_MOVES : from/to
 ```
 
 # このポートフォリオを作成した理由
