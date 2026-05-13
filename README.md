@@ -73,7 +73,6 @@ STOCKS {
 
 BOOKS ||--o{ STOCKS : has
 LOCATIONS ||--o{ STOCKS : stores
-
 BOOKS ||--o{ STOCK_MOVES : moves
 LOCATIONS ||--o{ STOCK_MOVES : from_location
 LOCATIONS ||--o{ STOCK_MOVES : to_location
