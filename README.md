@@ -42,10 +42,14 @@ BOOKS {
     datetime updated_at
 }
 
-    LOCATIONS {
-        bigint id PK
-        string name
-    }
+LOCATIONS {
+  bigint id PK
+  string name
+  integer kind
+  string code
+  datetime created_at
+  datetime updated_at
+}
 
     INVENTORIES {
         bigint id PK
