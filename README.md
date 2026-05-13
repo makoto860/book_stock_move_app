@@ -27,8 +27,6 @@ USERS {
     datetime updated_at
 }
 
-erDiagram
-
 BOOKS {
     bigint id PK
     string title
