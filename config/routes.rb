@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :books
   resources :stock_moves, only: [ :index, :new, :create ] do
     collection do
+      get :confirm
       post :confirm
     end
   end
