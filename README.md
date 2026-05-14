@@ -13,7 +13,7 @@ pg→herokuのDBを使用するためPostgreSQLを使用
 rails-i18n→わかりやすくなるようにRailsの日本語化対応に使用
 
 # 紹介画像
-![アプリ画面](images/top.jpeg)
+![トップ画面](images/top.jpeg)
 
 # ER図
 
