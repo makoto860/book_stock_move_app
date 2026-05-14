@@ -13,14 +13,11 @@ pg→herokuのDBを使用するためPostgreSQLを使用
 rails-i18n→わかりやすくなるようにRailsの日本語化対応に使用
 
 # 紹介画像
-![トップ画面](app/assets/images/top.jpeg)
+<img src="app/assets/images/top.jpeg" width="600">
 ![教科書一覧画面](app/assets/images/books_index.jpeg)
 ![教科書の移動履歴一覧画面](app/assets/images/stock_moves_index.jpeg)
 ![教科書の在庫を移動する画面](app/assets/images/stock_new.jpeg)
 ![現在の教科書の在庫一覧画面](app/assets/images/stocks_index.jpeg)
-
-
-
 
 # ER図
 
