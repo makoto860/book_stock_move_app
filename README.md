@@ -12,6 +12,9 @@ pg→herokuのDBを使用するためPostgreSQLを使用
 <br>
 rails-i18n→わかりやすくなるようにRailsの日本語化対応に使用
 
+# 紹介画像
+![アプリ画面](images/tot.jpeg)
+
 # ER図
 
 ```mermaid
