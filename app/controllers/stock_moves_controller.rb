@@ -12,17 +12,18 @@ class StockMovesController < ApplicationController
 
   def create
     StockTransferService.call(stock_move_params)
-    redirect_to stock_moves_path, notice: "在庫を移動しました"
+    redirect_to stock_moves_path, notice: "教科書を移動しました"
+  rescue => e
+    redirect_to confirm_stock_moves_path(stock_move: stock_move_params.to_h), alert: e.message
   end
 
   def confirm
     @stock_move = StockMove.new(stock_move_params)
-    @book = Book.find(@stock_move.book_id)
   end
 
   private
 
   def stock_move_params
-    params.require(:stock_move).permit(:book_id, :from_location_id, :to_location_id, :quantity)
+    params.require(:stock_move).permit(:book_id, :from_location_id, :to_location_id, :quantity, :move_type)
   end
 end

@@ -34,6 +34,7 @@
   <%= f.hidden_field :from_location_id %>
   <%= f.hidden_field :to_location_id %>
   <%= f.hidden_field :quantity %>
+  <%= f.hidden_field :move_type, value: "transfer" %>
   <%= f.submit "在庫の移動を確定する", class: "books-button" %>
 <% end %>
 <p class="books-link"><%= link_to "在庫移動画面に戻る", :back %></p>
