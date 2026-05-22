@@ -38,6 +38,16 @@
 また、CRUD機能の開発効率が高く、
 短期間で仕様変更にも対応しやすい点から採用しました。
 
+## 使用技術
+- Ruby on Rails 8.0.5（アプリケーション開発）
+- PostgreSQL（データベース管理）
+- HTML / CSS（画面構築）
+- devise（ユーザー認証機能）
+- Docker（開発環境の統一）
+- Heroku（デプロイ環境）
+- GitHub（ソース管理）
+- CircleCI（CI/CDによる自動テスト）
+
 # できること
 倉庫・Pick場・お客様間での在庫数や在庫移動を一元管理できるように設計しました。
 ログイン画面で在庫移動アプリに遷移、教科書のCRUD、在庫の数を登録ができること、場所ごとに在庫の数を移動できること、現在の在庫一覧で場所ごとの数を管理することができます。
@@ -121,16 +131,6 @@ BOOKS ||--o{ STOCK_MOVES : moves
 LOCATIONS ||--o{ STOCK_MOVES : from_location
 LOCATIONS ||--o{ STOCK_MOVES : to_location
 ```
-
-# 使用技術
-Ruby on Rails 8.0.5
-PostgreSQL
-HTML,CSS
-devise
-GitHub
-CircleCI
-Docker
-Heroku
 
 # 今後の改善点
 今後はデータ件数が増えた場合でも安定して動作するシステムに改善していきたいと考えています。
