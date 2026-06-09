@@ -1,28 +1,37 @@
+//app/javascript/scanner.tsです。
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-const scanner = new Html5QrcodeScanner(
-  "reader",
-  {
-    fps: 10,
-    qrbox: {
-      width: 250,
-      height: 250,
-    },
-  },
-  false
-);
+document.addEventListener("turbo:load", () => {
+  const reader = document.getElementById("reader");
 
-scanner.render(
-  (decodedText) => {
-    console.log("ISBN:", decodedText);
-
-    const result = document.getElementById("result");
-
-    if (result) {
-      result.textContent = `ISBN: ${decodedText}`;
-    }
-  },
-  (error) => {
-    console.log(error);
+  if (!reader) {
+    return;
   }
-);
+
+  const scanner = new Html5QrcodeScanner(
+    "reader",
+    {
+      fps: 10,
+      qrbox: {
+        width: 250,
+        height: 250,
+      },
+    },
+    false
+  );
+
+  scanner.render(
+    (decodedText) => {
+      console.log("ISBN:", decodedText);
+
+      const result = document.getElementById("result");
+
+      if (result) {
+        result.textContent = `ISBN: ${decodedText}`;
+      }
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+});
