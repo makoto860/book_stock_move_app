@@ -16,3 +16,5 @@ services:
       - db
     environment:
       RAILS_ENV: development
+    env_file:
+      - .env

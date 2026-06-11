@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   get "homes/top", to: "homes#top"
   get "scanner", to: "books#scanner"
   devise_for :users
-  resources :books
+  resources :books do
+    collection do
+      get :search_by_isbn
+    end
+  end
   resources :stocks, only: [ :index, :new, :create ]
   resources :stock_moves, only: [ :index, :new, :create ] do
     collection do

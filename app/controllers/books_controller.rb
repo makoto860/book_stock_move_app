@@ -1,5 +1,31 @@
+require "net/http"
+require "json"
+
 class BooksController < ApplicationController
   before_action :set_book, only: [ :show, :edit, :update, :destroy ]
+
+  def search_by_isbn
+    isbn = params[:isbn]
+
+    key = ENV["GOOGLE_BOOKS_API_KEY"]
+
+    url = URI(
+      "https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=#{key}"
+    )
+
+    response = Net::HTTP.get(url)
+
+    data = JSON.parse(response)
+
+    Rails.logger.debug data.inspect
+
+    title = data.dig("items", 0, "volumeInfo", "title") || "本が見つかりません"
+
+    render json: {
+      title: title
+    }
+  end
+
   def scanner
   end
 

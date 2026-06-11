@@ -1,4 +1,3 @@
-//app/javascript/scanner.tsです。
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 document.addEventListener("turbo:load", () => {
@@ -11,27 +10,38 @@ document.addEventListener("turbo:load", () => {
   const scanner = new Html5QrcodeScanner(
     "reader",
     {
-      fps: 10,
+      fps: 15,
       qrbox: {
-        width: 250,
-        height: 250,
+        width: 350,
+        height: 350,
       },
     },
     false
   );
 
   scanner.render(
-    (decodedText) => {
-      console.log("ISBN:", decodedText);
+    async (decodedText) => {
+     console.log("ISBN:", decodedText);
+
+      console.log("fetch start");
+
+      const response = await fetch(
+        `/books/search_by_isbn?isbn=${decodedText}`
+      );
+
+      console.log("fetch done");
+
+      const data = await response.json();
+
+      console.log(data);
 
       const result = document.getElementById("result");
 
       if (result) {
-        result.textContent = `ISBN: ${decodedText}`;
+        result.textContent =
+          `ISBN: ${decodedText} / タイトル: ${data.title}`;
       }
     },
-    (error) => {
-      console.log(error);
-    }
+    () => {}
   );
 });
