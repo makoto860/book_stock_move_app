@@ -88,3 +88,35 @@
   color: #9900CC;
   text-decoration: none;
 }
+
+#scanner-container {
+  text-align: center;
+}
+
+#reader {
+  width: 700px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#result {
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #ddd;
+  border: 2px solid #f5f0ff;
+  border-radius: 18px;
+}
+
+.books-scanner-link a {
+  background-color: #404849;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 45%;
+}
