@@ -12,8 +12,8 @@ document.addEventListener("turbo:load", () => {
     {
       fps: 15,
       qrbox: {
-        width: 350,
-        height: 350,
+        width: 450,
+        height: 450,
       },
     },
     false
@@ -23,7 +23,7 @@ document.addEventListener("turbo:load", () => {
     async (decodedText) => {
      console.log("ISBN:", decodedText);
 
-      console.log("fetch start");
+      await scanner.clear();
 
       const response = await fetch(
         `/books/search_by_isbn?isbn=${decodedText}`
@@ -32,8 +32,6 @@ document.addEventListener("turbo:load", () => {
       console.log("fetch done");
 
       const data = await response.json();
-
-      console.log(data);
 
       const result = document.getElementById("result");
 
