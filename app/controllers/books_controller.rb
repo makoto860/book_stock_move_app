@@ -1,6 +1,3 @@
-require "net/http"
-require "json"
-
 class BooksController < ApplicationController
   before_action :set_book, only: [ :show, :edit, :update, :destroy ]
 
@@ -16,8 +13,6 @@ class BooksController < ApplicationController
     response = Net::HTTP.get(url)
 
     data = JSON.parse(response)
-
-    Rails.logger.debug data.inspect
 
     title = data.dig("items", 0, "volumeInfo", "title") || "本が見つかりません"
 

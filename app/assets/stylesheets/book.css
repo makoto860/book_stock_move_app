@@ -94,10 +94,23 @@
 }
 
 #reader {
-  width: 700px;
+  width: 600px;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 30px;
+}
+
+#reader button {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
 #result {
@@ -115,8 +128,7 @@
   color: #fff;
   text-decoration: none;
   border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 15px;
+  padding: 20px 30px;
+  font-size: 20px;
   font-weight: bold;
-  margin-left: 45%;
 }

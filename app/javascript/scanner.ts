@@ -29,8 +29,6 @@ document.addEventListener("turbo:load", () => {
         `/books/search_by_isbn?isbn=${decodedText}`
       );
 
-      console.log("fetch done");
-
       const data = await response.json();
 
       const result = document.getElementById("result");
