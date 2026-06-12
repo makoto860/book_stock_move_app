@@ -89,6 +89,26 @@
   text-decoration: none;
 }
 
+.pagination-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination-link a,
+.pagination-link span {
+  background-color: #404849;
+  color: #fff;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.pagination-link .current {
+  background-color: #16a34a;
+  color: #fff;
+}
+
 #scanner-container {
   text-align: center;
 }

@@ -45,3 +45,6 @@
   </tbody>
 </table>
 <p class="books-link"><%= link_to "教科書を新しく登録する", :new_book %></p>
+<div class="pagination-link">
+  <%= paginate @books %>
+</div>
