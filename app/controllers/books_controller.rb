@@ -1,3 +1,6 @@
+require "net/http"
+require "json"
+
 class BooksController < ApplicationController
   before_action :set_book, only: [ :show, :edit, :update, :destroy ]
 
@@ -31,6 +34,7 @@ class BooksController < ApplicationController
     @books = @books.where("rack_number LIKE ?", "%#{params[:rack_number]}%") if params[:rack_number].present?
     direction = params[:order] == "asc" ? :asc : :desc
     @books = @books.order(created_at: direction)
+    @books = @books.page(params[:page]).per(10)
   end
 
   def new
