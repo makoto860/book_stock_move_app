@@ -29,21 +29,16 @@
     <td><%= I18n.l(@book.updated_at, format: :datetime_jp) %></td>
   </tr>
   <tr>
-<<<<<<< HEAD
     <th>注文日時</th>
     <td><%= @book.formatted_order_date_time %></td>
   </tr>
   <tr>
-    <th>取り寄せ日時</th>
-    <td><%= @book.formatted_special_order_date_time %></td>
-=======
     <th>取り寄せ日時</th>
     <td><%= format_special_order_date_time(@book) %></td>
   </tr>
   <tr>
     <th>注文日時</th>
     <td><%= format_order_date_time(@book) %></td>
->>>>>>> bcf44b5 (教科書の情報画面で未記入でもビューが壊れないように実装)
   </tr>
 </table>
 <p class="books-link"><%= link_to "教科書一覧", books_path %></p>
