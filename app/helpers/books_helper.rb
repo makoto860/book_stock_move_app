@@ -12,4 +12,12 @@ module BooksHelper
       "background-color: #00ffff;"
     end
   end
+
+  def format_special_order_date_time(book)
+    book.special_order_date_time ? l(book.special_order_date_time, format: :datetime_jp) :"×"
+  end
+
+  def format_order_date_time(book)
+    book.order_date_time ? l(book.order_date_time, format: :datetime_jp) :"×"
+  end
 end
