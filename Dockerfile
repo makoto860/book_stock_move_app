@@ -11,9 +11,18 @@
 ARG RUBY_VERSION=3.3.3
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
-# npmをインストール
 RUN apt-get update -qq && \
-    apt-get install -y nodejs npm
+    apt-get install --no-install-recommends -y \
+      nodejs \
+      # npmをインストール
+      npm \
+      curl \
+      libjemalloc2 \
+      libvips \
+      sqlite3 \
+      chromium \
+      chromium-driver && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # yarnをインストール
 RUN npm install -g yarn
@@ -22,9 +31,6 @@ RUN npm install -g yarn
 WORKDIR /rails
 
 # Install base packages
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
 ENV RAILS_ENV="production" \
