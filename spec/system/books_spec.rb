@@ -28,4 +28,15 @@ RSpec.describe "books/", type: :system do
     click_link "教科書一覧に戻る"
     expect(page).to have_current_path(books_path)
   end
+
+  it "教科書の情報画面にタイトルが表示されること" do
+    visit book_path(book)
+    expect(page).to have_content(book.title)
+  end
+
+  it "教科書一覧リンクが表示されること" do
+    visit book_path(book)
+    expect(page).to have_link("教科書一覧")
+  end
+
 end
