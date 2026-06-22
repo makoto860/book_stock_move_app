@@ -6,22 +6,14 @@ class BooksController < ApplicationController
 
   def search_by_isbn
     isbn = params[:isbn]
-
     key = ENV["GOOGLE_BOOKS_API_KEY"]
-
-    url = URI(
-      "https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=#{key}"
-    )
+    url = URI("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=#{key}")
 
     response = Net::HTTP.get(url)
-
     data = JSON.parse(response)
 
     title = data.dig("items", 0, "volumeInfo", "title") || "本が見つかりません"
-
-    render json: {
-      title: title
-    }
+    render json: {title: title}
   end
 
   def scanner
@@ -44,10 +36,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      StockInitializerService.call(
-        book: @book,
-        quantity: @book.book_quantity.to_i
-      )
+      StockInitializerService.call(book: @book,quantity: @book.book_quantity.to_i)
       redirect_to books_path, notice: "教科書を登録しました"
     else
       render :new, status: :unprocessable_entity
