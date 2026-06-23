@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "homes/top", to: "homes#top"
-  get "scanner", to: "books#scanner"
+  get "books/scanner", to: "books#scanner"
+
   devise_for :users
   resources :books do
     collection do

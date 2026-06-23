@@ -39,4 +39,24 @@ RSpec.describe "books/", type: :system do
     expect(page).to have_link("教科書一覧")
   end
 
+  it "教科書の編集を完了するボタンが表示されること" do
+    visit edit_book_path(book)
+    expect(page).to have_button("教科書の編集を完了する")
+  end
+
+  it "タイトル入力欄が表示されること" do
+    visit edit_book_path(book)
+    expect(page).to have_field("タイトル")
+  end
+
+  it "ISBN読み取り画面が表示されること" do
+    visit books_scanner_path
+    expect(page).to have_content("ISBN読み取り画面")
+  end
+
+  it "CSSが表示されること" do
+    visit books_scanner_path
+    expect(page).to have_css("#reader")
+    expect(page).to have_css("#result")
+  end
 end
