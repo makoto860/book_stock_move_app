@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :book do
-    title { "本のタイトル" }
+    sequence(:title) { |n| "本のタイトル#{n}" }
     sequence(:rack_number) { |n| "A-#{n}" }
     sequence(:isbn) { |n| "978〜#{n}" }
 
