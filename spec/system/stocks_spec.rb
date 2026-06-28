@@ -10,7 +10,7 @@ RSpec.describe "stocks/", type: :system do
     expect(page).to have_content(stock.book.title)
   end
 
-  describe "在庫の登録画面" do
+  describe "在庫の登録画面の表示" do
     before do
       visit new_stock_path
     end
@@ -19,7 +19,7 @@ RSpec.describe "stocks/", type: :system do
       expect(page).to have_field("場所")
     end
 
-    context "在庫を登録したのとき" do
+    before "在庫の登録後" do
       before do
         select book.title, from: "stock_book_id"
         select location.name, from: "stock_location_id"
@@ -28,11 +28,6 @@ RSpec.describe "stocks/", type: :system do
       end
 
       it "教科書を登録するボタンを押すと在庫一覧画面に遷移すること" do
-        visit new_stock_path
-        select book.title, from: "stock_book_id"
-        select location.name, from: "stock_location_id"
-        fill_in "stock_quantity", with: 1
-        click_button "教科書を登録する"
         expect(page).to have_current_path(stocks_path)
       end
 
