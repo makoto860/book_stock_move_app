@@ -25,11 +25,11 @@
   </thead>
 
   <% @stocks.each do |stock| %>
-      <tr>
-        <td><%= stock.book.title %></td>
-        <td><%= stock.location.name %></td>
-        <td class="<%= stock_color_class(stock) %>"><%= stock.quantity %></td>
-        <td><%= I18n.l(stock.created_at, format: :datetime_jp) %></td>
-      </tr>
+    <tr>
+      <td><%= stock.book.title %></td>
+      <td><%= stock.location.name %></td>
+      <td class="<%= stock_color_class(stock) %>"><%= stock.quantity %></td>
+      <td><%= I18n.l(stock.created_at, format: :datetime_jp) %></td>
+    </tr>
   <% end %>
 </table>

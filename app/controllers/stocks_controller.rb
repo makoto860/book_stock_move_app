@@ -12,14 +12,14 @@ class StocksController < ApplicationController
     end
 
     @stocks =
-      case params[:sort]
-      when "quantity_desc"
-        @stocks.order(quantity: :desc)
-      when "quantity_asc"
-        @stocks.order(quantity: :asc)
-      else
-        @stocks.order(created_at: :desc)
-      end
+    case params[:sort]
+    when "quantity_desc"
+      @stocks.order(quantity: :desc)
+    when "quantity_asc"
+      @stocks.order(quantity: :asc)
+    else
+      @stocks.order(created_at: :desc)
+    end
   end
 
   def new
