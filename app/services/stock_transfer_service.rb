@@ -20,13 +20,7 @@ class StockTransferService
         to_stock.save!
       end
 
-      StockMove.create!(
-        book: book,
-        from_location: from,
-        to_location: to,
-        quantity: qty,
-        move_type: :transfer
-      )
+      StockMove.create!(book: book, from_location: from, to_location: to, quantity: qty, move_type: :transfer)
     end
   end
 end
