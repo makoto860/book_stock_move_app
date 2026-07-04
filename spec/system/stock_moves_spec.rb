@@ -13,13 +13,16 @@ RSpec.describe "stock_moves", type: :system do
     end
   end
 
-  describe "在庫移動登録画面" do
+  describe "在庫移動履歴を登録する画面" do
     before do
       visit new_stock_move_path
     end
 
-    it "タイトル入力欄が表示されること" do
+    it "入力欄が表示されること" do
       expect(page).to have_field("タイトル")
+      expect(page).to have_field("移動元")
+      expect(page).to have_field("移動先")
+      expect(page).to have_field("数")
     end
 
     it "教科書を選択できること" do
