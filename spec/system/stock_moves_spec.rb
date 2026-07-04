@@ -1,0 +1,65 @@
+require 'rails_helper'
+
+RSpec.describe "stock_moves", type: :system do
+  describe "在庫移動履歴一覧" do
+    let!(:move) { create(:stock_move) }
+
+    it "stock_movesが表示されること" do
+      visit stock_moves_path
+      expect(page).to have_content(move.book.title)
+      expect(page).to have_content(move.from_location.name)
+      expect(page).to have_content(move.to_location.name)
+      expect(page).to have_content(move.quantity)
+    end
+  end
+
+  describe "在庫移動登録画面" do
+    before do
+      visit new_stock_move_path
+    end
+
+    it "タイトル入力欄が表示されること" do
+      expect(page).to have_field("タイトル")
+    end
+
+    it "教科書を選択できること" do
+      expect(page).to have_select("stock_move_book_id")
+    end
+
+    it "在庫を移動するボタンが表示されること" do
+      expect(page).to have_button("在庫を移動する")
+    end
+  end
+
+  describe "在庫移動確認画面" do
+    let!(:book) { create(:book) }
+    let!(:from_location) { create(:location, :warehouse) }
+    let!(:to_location) { create(:location, :pick) }
+    let!(:from_stock) do
+      create(:stock, book: book, location: from_location, quantity: 3)
+    end
+
+    before do
+      visit new_stock_move_path
+      select book.title, from: "stock_move_book_id"
+      select from_location.name, from: "stock_move_from_location_id"
+      select to_location.name, from: "stock_move_to_location_id"
+      fill_in "stock_move_quantity", with: 3
+      click_button "在庫を移動する"
+    end
+
+    context "確認画面で在庫移動を確定したとき" do
+      before do
+        click_button "在庫の移動を確定する"
+      end
+
+      it "成功メッセージが表示されること" do
+        expect(page).to have_content("教科書を移動しました")
+      end
+
+      it "在庫移動履歴一覧へ遷移すること" do
+        expect(page).to have_current_path(stock_moves_path)
+      end
+    end
+  end
+end
