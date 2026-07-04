@@ -35,6 +35,9 @@ RSpec.describe "books", type: :system do
     expect(page).to have_content(book.title)
     expect(page).to have_content(book.rack_number)
     expect(page).to have_content(book.isbn)
+    expect(page).to have_content(
+      I18n.l(book.created_at, format: :datetime_jp)
+    )
   end
 
   it "新しく登録するリンクが表示されること" do

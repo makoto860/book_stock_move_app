@@ -5,12 +5,14 @@ RSpec.describe "stocks/", type: :system do
   let!(:book) { create(:book) }
   let!(:location) { create(:location) }
 
-  it "在庫一覧でタイトルが表示されること" do
+  it "在庫一覧で在庫データが表示されること" do
     visit stocks_path
     expect(page).to have_content(stock.book.title)
     expect(page).to have_content(stock.location.name)
     expect(page).to have_content(stock.quantity)
-    expect(page).to have_content(stock.created_at)
+    expect(page).to have_content(
+      I18n.l(stock.created_at, format: :datetime_jp)
+    )
   end
 
   describe "在庫の登録画面" do

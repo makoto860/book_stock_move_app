@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "StockMoves", type: :request do
+RSpec.describe "stock_moves", type: :request do
   describe "GET /stock_movesの一覧画面" do
     let!(:stock_move) { create(:stock_move) }
 

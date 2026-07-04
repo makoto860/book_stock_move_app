@@ -1,7 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Stocks", type: :request do
-
+RSpec.describe "stocks", type: :request do
   describe "GET /stocks" do
     let!(:stock) { create(:stock) }
 
@@ -10,9 +9,14 @@ RSpec.describe "Stocks", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "教科書のタイトルが含まれること" do
+    it "教科書の在庫データが含まれること" do
       get stocks_path
       expect(response.body).to include(stock.book.title)
+      expect(response.body).to include(stock.location.name)
+      expect(response.body).to include(stock.quantity.to_s)
+      expect(response.body).to include(
+        I18n.l(stock.created_at, format: :datetime_jp)
+      )
     end
   end
 
