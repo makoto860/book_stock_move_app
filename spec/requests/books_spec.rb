@@ -9,14 +9,11 @@ RSpec.describe "Books Page", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "タイトルが含まれること" do
+    it "bookデータが含まれること" do
       get books_path
       expect(response.body).to include(book.title)
-    end
-
-    it "棚番号が含まれること" do
-      get books_path
       expect(response.body).to include(book.rack_number)
+      expect(response.body).to include(book.isbn)
     end
   end
 

@@ -1,7 +1,34 @@
 require 'rails_helper'
 
-RSpec.describe "books/", type: :system do
+RSpec.describe "books", type: :system do
   let!(:book) { create(:book) }
+
+  context "教科書一覧画面で取り寄せではないとき" do
+    let!(:book) do
+      create(:book, special_order_date_time: nil, order_date_time: nil)
+    end
+
+    it "×が表示されること" do
+      visit books_path
+      expect(page).to have_content("×")
+    end
+  end
+
+  context "取り寄せのとき" do
+    let!(:book) do
+      create(:book, special_order_date_time: Time.current, order_date_time: 1.day.from_now)
+    end
+
+    it "教科書一覧画面でありが表示されること" do
+      visit books_path
+      expect(page).to have_content("あり")
+    end
+
+    it "教科書の情報画面で背景色が変更されること" do
+      visit book_path(book)
+      expect(page).to have_css("table[style='background-color: #00ffff;']")
+    end
+  end
 
   it "一覧画面にタイトルが表示されること" do
     visit books_path
