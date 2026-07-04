@@ -8,9 +8,12 @@ RSpec.describe "stocks/", type: :system do
   it "在庫一覧でタイトルが表示されること" do
     visit stocks_path
     expect(page).to have_content(stock.book.title)
+    expect(page).to have_content(stock.location.name)
+    expect(page).to have_content(stock.quantity)
+    expect(page).to have_content(stock.created_at)
   end
 
-  describe "在庫の登録画面の表示" do
+  describe "在庫の登録画面" do
     before do
       visit new_stock_path
     end
@@ -19,7 +22,7 @@ RSpec.describe "stocks/", type: :system do
       expect(page).to have_field("場所")
     end
 
-    before "在庫の登録後" do
+    context "在庫の登録後のとき" do
       before do
         select book.title, from: "stock_book_id"
         select location.name, from: "stock_location_id"
