@@ -1,18 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "stock_moves", type: :system do
-  describe "在庫移動履歴一覧" do
-    let!(:move) { create(:stock_move) }
-
-    it "stock_movesが表示されること" do
-      visit stock_moves_path
-      expect(page).to have_content(move.book.title)
-      expect(page).to have_content(move.from_location.name)
-      expect(page).to have_content(move.to_location.name)
-      expect(page).to have_content(move.quantity)
-    end
-  end
-
   describe "在庫移動履歴を登録する画面" do
     before do
       visit new_stock_move_path

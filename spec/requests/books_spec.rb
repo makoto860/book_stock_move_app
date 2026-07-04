@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Books Page", type: :request do
+RSpec.describe "books", type: :request do
   describe "GET /booksの一覧画面" do
     let!(:book) { create(:book) }
 
@@ -14,6 +14,9 @@ RSpec.describe "Books Page", type: :request do
       expect(response.body).to include(book.title)
       expect(response.body).to include(book.rack_number)
       expect(response.body).to include(book.isbn)
+      expect(response.body).to include(
+        I18n.l(book.created_at, format: :datetime_jp)
+      )
     end
   end
 
