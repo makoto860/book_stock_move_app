@@ -63,7 +63,7 @@ RSpec.describe "stock_moves", type: :system do
       it "在庫不足のメッセージが表示されること" do
         expect(page).to have_content("在庫不足です")
       end
-      
+
       it "確認画面へ戻ること" do
         expect(page).to have_current_path(confirm_stock_moves_path, ignore_query: true)
       end

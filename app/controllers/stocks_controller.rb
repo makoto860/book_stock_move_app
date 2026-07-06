@@ -29,10 +29,7 @@ class StocksController < ApplicationController
   end
 
   def create
-    @stock = Stock.find_or_initialize_by(
-      book_id: stock_params[:book_id],
-      location_id: stock_params[:location_id]
-    )
+    @stock = Stock.find_or_initialize_by(book_id: stock_params[:book_id], location_id: stock_params[:location_id])
 
     @stock.quantity ||= 0
     @stock.quantity += stock_params[:quantity].to_i
