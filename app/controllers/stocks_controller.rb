@@ -29,17 +29,13 @@ class StocksController < ApplicationController
   end
 
   def create
-    @stock = Stock.find_or_initialize_by(book_id: stock_params[:book_id], location_id: stock_params[:location_id])
-
-    @stock.quantity ||= 0
-    @stock.quantity += stock_params[:quantity].to_i
-
+    StockRegistrationService.call(stock_params)
     if @stock.save
       redirect_to stocks_path, notice: "在庫を登録しました"
     else
       @books = Book.all
       @locations = Location.all
-      render :new
+     render :new
     end
   end
 
