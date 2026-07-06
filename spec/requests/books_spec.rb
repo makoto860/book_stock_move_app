@@ -22,7 +22,7 @@ RSpec.describe "books", type: :request do
 
   describe "POST /booksの新規登録画面" do
     let(:params) do
-      { book: { title: "new_title", rack_number: "new_rack_number", isbn: "new_isbn"} }
+      { book: { title: "new_title", rack_number: "new_rack_number", isbn: "new_isbn" } }
     end
 
     it "本の情報を登録できること" do

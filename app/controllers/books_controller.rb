@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     data = JSON.parse(response)
 
     title = data.dig("items", 0, "volumeInfo", "title") || "本が見つかりません"
-    render json: {title: title}
+    render json: { title: title }
   end
 
   def scanner
@@ -21,9 +21,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @books = @books.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
-    @books = @books.where("isbn LIKE ?", "%#{params[:isbn]}%") if params[:isbn].present?
-    @books = @books.where("rack_number LIKE ?", "%#{params[:rack_number]}%") if params[:rack_number].present?
+    %i[title isbn rack_number].each do |field|
+      @books = @books.where("#{field} LIKE ?", "%#{params[field]}%") if params[field].present?
+    end
     direction = params[:order] == "asc" ? :asc : :desc
     @books = @books.order(created_at: direction)
     @books = @books.page(params[:page]).per(10)
@@ -36,7 +36,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      StockInitializerService.call(book: @book,quantity: @book.book_quantity.to_i)
+      StockInitializerService.call(book: @book, quantity: @book.book_quantity.to_i)
       redirect_to books_path, notice: "教科書を登録しました"
     else
       render :new, status: :unprocessable_entity
@@ -45,8 +45,8 @@ class BooksController < ApplicationController
 
   def show
     @stock_move = @book.stock_moves.build
-    @warehouses = Location.where(kind: "warehouse")
-    @picks = Location.where(kind: "pick")
+    scope :warehouses, -> { where(kind: "warehouse") }
+    scope :picks, -> { where(kind: "pick") }
   end
 
   def edit
