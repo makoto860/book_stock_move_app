@@ -35,12 +35,12 @@ RSpec.describe "stock_moves", type: :system do
       select book.title, from: "stock_move_book_id"
       select from_location.name, from: "stock_move_from_location_id"
       select to_location.name, from: "stock_move_to_location_id"
-      fill_in "stock_move_quantity", with: 3
-      click_button "在庫を移動する"
     end
 
     context "確認画面で在庫移動を確定したとき" do
       before do
+        fill_in "stock_move_quantity", with: 3
+        click_button "在庫を移動する"
         click_button "在庫の移動を確定する"
       end
 
@@ -50,6 +50,22 @@ RSpec.describe "stock_moves", type: :system do
 
       it "在庫移動履歴一覧へ遷移すること" do
         expect(page).to have_current_path(stock_moves_path)
+      end
+    end
+
+    context "在庫不足のとき" do
+      before do
+        fill_in "stock_move_quantity", with: 4
+        click_button "在庫を移動する"
+        click_button "在庫の移動を確定する"
+      end
+
+      it "在庫不足のメッセージが表示されること" do
+        expect(page).to have_content("在庫不足です")
+      end
+      
+      it "確認画面へ戻ること" do
+        expect(page).to have_current_path(confirm_stock_moves_path, ignore_query: true)
       end
     end
   end
