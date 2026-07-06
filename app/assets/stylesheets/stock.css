@@ -25,12 +25,12 @@
   margin-top: 14px;
 }
 
-.quantity-color-empty {
-  color: #FF0033;
+.color-quantity-exist {
+  color: #00CC00;
   font-weight: bold;
 }
 
-.quantity-color-full {
-  color: #00CC00;
+.color-quantity-not-exist {
+  color: #FF0033;
   font-weight: bold;
 }
