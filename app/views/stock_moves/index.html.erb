@@ -10,13 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @stock_moves.each do |move| %>
+    <% @stock_moves.each do |stock_move| %>
       <tr>
-        <td><%= move.book.title %></td>
-        <td><%= move.from_location.name %></td>
-        <td><%= move.to_location.name %></td>
-        <td><%= move.quantity %></td>
-        <td><%= I18n.l(move.created_at, format: :datetime_jp) %></td>
+        <td><%= stock_move.book.title %></td>
+        <td><%= stock_move.from_location.name %></td>
+        <td><%= stock_move.to_location.name %></td>
+        <td><%= stock_move.quantity %></td>
+        <td><%= I18n.l(stock_move.created_at, format: :datetime_jp) %></td>
       </tr>
     <% end %>
   </tbody>
