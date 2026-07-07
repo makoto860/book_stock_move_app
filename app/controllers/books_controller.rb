@@ -45,8 +45,8 @@ class BooksController < ApplicationController
 
   def show
     @stock_move = @book.stock_moves.build
-    scope :warehouses, -> { where(kind: "warehouse") }
-    scope :picks, -> { where(kind: "pick") }
+    @warehouses = Location.warehouse
+    @picks = Location.pick
   end
 
   def edit

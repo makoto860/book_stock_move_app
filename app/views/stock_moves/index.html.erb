@@ -6,6 +6,7 @@
       <th>移動元</th>
       <th>移動先</th>
       <th>移動した数</th>
+      <th>履歴移動日時</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +16,9 @@
         <td><%= move.from_location.name %></td>
         <td><%= move.to_location.name %></td>
         <td><%= move.quantity %></td>
+        <td><%= I18n.l(move.created_at, format: :datetime_jp) %></td>
       </tr>
     <% end %>
   </tbody>
+  <div class="pagination-link"><%= paginate @stock_moves %></div>
 </table>

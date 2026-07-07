@@ -30,13 +30,11 @@ class StocksController < ApplicationController
 
   def create
     StockRegistrationService.call(stock_params)
-    if @stock.save
-      redirect_to stocks_path, notice: "在庫を登録しました"
-    else
-      @books = Book.all
-      @locations = Location.all
-     render :new
-    end
+    redirect_to stocks_path, notice: "在庫を登録しました"
+  rescue ActiveRecord::RecordInvalid
+    @books = Book.all
+    @locations = Location.all
+    ender :new
   end
 
   private

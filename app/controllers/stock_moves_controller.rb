@@ -1,7 +1,7 @@
 class StockMovesController < ApplicationController
   def index
     @books = Book.all
-    @stock_moves = StockMove.includes(:book, :from_location, :to_location).order(created_at: :desc)
+    @stock_moves = StockMove.includes(:book, :from_location, :to_location).order(created_at: :desc).page(params[:page]).per(14)
   end
 
   def new
