@@ -1,9 +1,5 @@
 <div class="devise-container">
   <h1>ログイン画面</h1>
-  <p>テスト用のアカウントメールアドレスとパスワード</p>
-  <p>test@example.com</p>
-  <p>password</p>
-
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <p><%= f.label :メールアドレス %></p>

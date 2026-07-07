@@ -34,7 +34,7 @@ class StocksController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     @books = Book.all
     @locations = Location.all
-    ender :new
+    render :new
   end
 
   private

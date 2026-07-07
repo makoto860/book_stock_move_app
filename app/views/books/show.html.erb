@@ -29,6 +29,10 @@
     <td><%= I18n.l(@book.updated_at, format: :datetime_jp) %></td>
   </tr>
   <tr>
+    <th>注文日時</th>
+    <td><%= @book.formatted_order_date_time %></td>
+  </tr>
+  <tr>
     <th>取り寄せ日時</th>
     <td><%= format_special_order_date_time(@book) %></td>
   </tr>
