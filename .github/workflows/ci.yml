@@ -79,7 +79,16 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            build-essential \
+            git \
+            libyaml-dev \
+            pkg-config \
+            libpq-dev \
+            postgresql-client \
+            google-chrome-stable
 
       - name: Checkout code
         uses: actions/checkout@v6
@@ -89,6 +98,13 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Debug database connection
+        run: |
+          echo "DB_HOST=$DB_HOST"
+          env | grep DB
+          getent hosts db || true
+          pg_isready -h db -U postgres || true
 
       - name: Run tests
         run: bin/rails db:test:prepare test test:system
