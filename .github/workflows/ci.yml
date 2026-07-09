@@ -71,6 +71,12 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+    env:
+      RAILS_ENV: test
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
@@ -85,9 +91,6 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
-        env:
-          RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests
