@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
+      # GitHub ActionsでPostgreSQLコンテナを起動する設定
       db:
         image: postgres:16
         env:
@@ -71,6 +72,7 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+    # RailsがPostgreSQLへ接続するための設定
     env:
       RAILS_ENV: test
       DB_HOST: localhost
