@@ -103,15 +103,16 @@ jobs:
         run: |
           echo "DB_HOST=$DB_HOST"
           env | grep DB
-          getent hosts db || true
           pg_isready -h localhost -U postgres || true
 
       - name: Wait for PostgreSQL
         run: |
           for i in {1..30}; do
-          pg_isready -h db -U postgres && exit 0
-          echo "Waiting for PostgreSQL..."
-          sleep 2
+            pg_isready -h localhost -U postgres && exit 0
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+          exit 1
 
       - name: Run tests
         run: bin/rails db:test:prepare test test:system
