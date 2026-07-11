@@ -5,10 +5,10 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  book_id: 1
-  location_id: 1
+  book: one
+  location: one
   quantity: 1
 two:
-  book_id: 2
-  location_id: 2
+  book: two
+  location: two
   quantity: 2
