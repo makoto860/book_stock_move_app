@@ -4,8 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  title: "Ruby入門"
+  book_quantity: 10
+  isbn: "9781234567890"
+  rack_number: "A-01"
+
+two:
+  title: "Railsガイド"
+  book_quantity: 5
+  isbn: "9780987654321"
+  rack_number: "B-02"
