@@ -6,12 +6,12 @@
 #
 one:
   title: "タイトル"
-  book_quantity: 10
-  isbn: "9781234567890"
+  book_quantity: 1
+  isbn: "0000000000000"
   rack_number: "A-01"
 
 two:
   title: "タイトル"
-  book_quantity: 5
-  isbn: "9780987654321"
+  book_quantity: 2
+  isbn: "0000000000001"
   rack_number: "B-02"
