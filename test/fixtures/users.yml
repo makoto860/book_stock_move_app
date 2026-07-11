@@ -6,7 +6,7 @@
 #
 one:
   email: A@example.com
-  encrypted_password: dummy
+  encrypted_password: "dummy"
 two:
   email: B@example.com
-  encrypted_password: dummy
+  encrypted_password: "dummy"
