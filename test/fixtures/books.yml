@@ -8,10 +8,10 @@ one:
   title: "タイトル"
   book_quantity: 1
   isbn: "0000000000000"
-  rack_number: "A-01"
+  rack_number: "A-0-1-0-1"
 
 two:
   title: "タイトル"
   book_quantity: 2
   isbn: "0000000000001"
-  rack_number: "B-02"
+  rack_number: "A-0-1-0-2"
