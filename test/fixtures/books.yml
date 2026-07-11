@@ -5,13 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  title: "Ruby入門"
+  title: "タイトル"
   book_quantity: 10
   isbn: "9781234567890"
   rack_number: "A-01"
 
 two:
-  title: "Railsガイド"
+  title: "タイトル"
   book_quantity: 5
   isbn: "9780987654321"
   rack_number: "B-02"
