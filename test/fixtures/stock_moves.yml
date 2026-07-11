@@ -6,14 +6,14 @@
 #
 one:
   book: one
-  from_location_id: one
-  to_location_id: one
+  from_location: one
+  to_location: one
   quantity: 1
   move_type: 1
 
 two:
   book: two
-  from_location_id: two
-  to_location_id: two
+  from_location: two
+  to_location: two
   quantity: 2
   move_type: 2
