@@ -1,5 +1,5 @@
+<h1>現在の在庫一覧</h1>
 <div class="stocks-container">
-  <h1>現在の在庫一覧</h1>
   <div class="stocks-search">
     <%= form_with url: stocks_path, method: :get, local: true do %>
       <div class="stock-search-field">
@@ -14,6 +14,7 @@
     <%= link_to "作成日が新しい順", stocks_path(sort: "created_at") %>
   </div>
 </div>
+<div class="total-parts">件数: <%= Stock.count %></div>
 <table class="books-table">
   <thead>
     <tr>
