@@ -57,7 +57,7 @@
 - GitHub（ソース管理）
 - CircleCI（CI/CDによる自動テスト）
 - TypeScript（ISBN読み取り画面の構築）
-- html5-qrcode
+- html5-qrcode（QRコードのスキャン）
 - Google Books API（本の情報を連携）
 - rspec（本当に動くかテストを実装）
 
