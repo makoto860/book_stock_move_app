@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   def index
-    @stocks = Stock.includes(:book, :location)
+    @stocks = Stock.includes(:book, :location).page(params[:page]).per(5)
     if params[:q].present?
       q = params[:q]
       @stocks = @stocks.joins(:book)
