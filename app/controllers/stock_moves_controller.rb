@@ -10,7 +10,7 @@ class StockMovesController < ApplicationController
         @stock_moves = @stock_moves.where("books.title ILIKE :q OR locations.name ILIKE :q", q: "%#{params[:q]}%")
       end
     end
-    @stock_moves = @stock_moves.order(created_at: :desc).page(params[:page]).per(5)
+    @stock_moves = @stock_moves.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def new
