@@ -9,11 +9,13 @@
     <% end %>
   </div>
   <div class="sort-book-link-list a">
-    <%= link_to "在庫多い順", stocks_path(sort: "quantity_desc") %>
-    <%= link_to "在庫少ない順", stocks_path(sort: "quantity_asc") %>
-    <%= link_to "作成日が新しい順", stocks_path(sort: "created_at") %>
+    <%= link_to "在庫数が少ない順", stocks_path(order: :asc, q: params[:q]) %>
+    <%= link_to "在庫数が多い順", stocks_path(order: :desc, q: params[:q]) %>
+    <%= link_to "作成日時が早い順", stocks_path(order: :desc, q: params[:q]) %>
+    <%= link_to "作成日時が遅い順", stocks_path(order: :asc, q: params[:q]) %>
   </div>
 </div>
+並び替えを調整。作成が遅い順を追加
 <div class="total-quantity-parts">件数: <%= Stock.count %></div>
 <table class="books-table">
   <thead>
