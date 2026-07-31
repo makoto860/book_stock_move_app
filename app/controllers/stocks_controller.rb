@@ -2,12 +2,21 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.includes(:book, :location)
     if params[:q].present?
-      q = params[:q]
-      @stocks = @stocks.joins(:book)
-      if q.match?(/\A\d+\z/)
-        @stocks = @stocks.where("books.title LIKE :q OR stocks.quantity = :quantity", q: "%#{q}%", quantity: q.to_i)
+      @stocks = @stocks.joins(:book, :location)
+      if params[:q].match?(/\A\d+\z/)
+        @stocks = @stocks.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR stocks.quantity = :quantity", 
+          q: "%#{params[:q]}%",
+          quantity: params[:q].to_i
+        )
       else
-        @stocks = @stocks.where("books.title LIKE ?", "%#{q}%")
+        @stocks = @stocks.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q",
+          q: "%#{params[:q]}%"
+        )
       end
     end
     direction = params[:order] == "asc" ? :asc : :desc

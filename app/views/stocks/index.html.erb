@@ -3,7 +3,7 @@
   <div class="stocks-search">
     <%= form_with url: stocks_path, method: :get, local: true do %>
       <div class="stock-search-field">
-        <%= text_field_tag :q, params[:q], placeholder: "タイトル、現在の在庫数で検索" %>
+        <%= text_field_tag :q, params[:q], placeholder: "タイトル、現在の在庫数、移動元、移動先で検索" %>
       </div>
       <%= submit_tag "検索", class: "stock-search-button" %>
     <% end %>
@@ -15,7 +15,6 @@
     <%= link_to "作成日時が遅い順", stocks_path(order: :asc, q: params[:q]) %>
   </div>
 </div>
-並び替えを調整。作成が遅い順を追加
 <div class="total-quantity-parts">件数: <%= Stock.count %></div>
 <table class="books-table">
   <thead>
