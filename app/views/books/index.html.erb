@@ -12,8 +12,8 @@
     <% end %>
   </div>
   <div class="sort-book-link-list">
-    <%= link_to "作成日早い順", books_path(order: "desc") %>
-    <%= link_to "作成日遅い順", books_path(order: "asc") %>
+    <%= link_to "作成日早い順", books_path(order: "asc") %>
+    <%= link_to "作成日遅い順", books_path(order: "desc") %>
   </div>
 </div>
 <div class="total-quantity-parts">件数: <%= @books.total_count %></div>

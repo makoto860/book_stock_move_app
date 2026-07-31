@@ -9,10 +9,10 @@
     <% end %>
   </div>
   <div class="sort-book-link-list">
-    <%= link_to "作成日遅い順", stock_moves_path(order: "desc") %>
-    <%= link_to "作成日早い順", stock_moves_path(order: "asc") %>
-    <%= link_to "在庫数多い順", stock_moves_path(order: "desc") %>
-    <%= link_to "在庫数少ない順", stock_moves_path(order: "asc") %>
+    <%= link_to "在庫数少ない順", stock_moves_path(sort: "quantity", order: "asc", q: params[:q]) %>
+    <%= link_to "在庫数多い順", stock_moves_path(sort: "quantity", order: "desc", q: params[:q]) %>
+    <%= link_to "作成日遅い順", stock_moves_path(sort: "created_at", order: "desc", q: params[:q]) %>
+    <%= link_to "作成日早い順", stock_moves_path(sort: "created_at", order: "asc", q: params[:q]) %>
   </div>
 </div>
 <div class="total-quantity-parts">件数: <%= @stock_moves.total_count %></div>
