@@ -22,7 +22,8 @@ class StockMovesController < ApplicationController
         )
       end
     end
-    @stock_moves = @stock_moves.order(created_at: :desc).page(params[:page]).per(12)
+    direction = params[:order] == "asc" ? :asc : :desc
+    @stock_moves = @stock_moves.order(quantity: direction).page(params[:page]).per(12)
   end
 
   def new

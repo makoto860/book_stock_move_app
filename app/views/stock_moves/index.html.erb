@@ -8,9 +8,13 @@
       <%= submit_tag "検索", class: "search-button" %>
     <% end %>
   </div>
+  <div class="sort-book-link-list">
+    <%= link_to "作成日遅い順", stock_moves_path(order: "desc") %>
+    <%= link_to "作成日早い順", stock_moves_path(order: "asc") %>
+    <%= link_to "在庫数多い順", stock_moves_path(order: "desc") %>
+    <%= link_to "在庫数少ない順", stock_moves_path(order: "asc") %>
+  </div>
 </div>
-
-<div class="sort">並び替え移動元、移動先、日時順</div>
 <div class="total-quantity-parts">件数: <%= @stock_moves.total_count %></div>
 <table class="books-table">
   <thead>
