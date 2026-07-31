@@ -157,3 +157,8 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.stocks-move-search-field input {
+  width: 300px;
+  height: 30px;
+}

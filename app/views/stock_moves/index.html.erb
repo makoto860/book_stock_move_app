@@ -1,10 +1,16 @@
-<h1>在庫の移動した履歴一覧</h1>
-<%= form_with url: stock_moves_path, method: :get, local: true do %>
-  <%= text_field_tag :q, params[:q], placeholder: "教科書のタイトルで検索" %>
-  <%= submit_tag "検索" %>
-<% end %>
+<div class="books-container">
+  <h1>在庫の移動した履歴一覧</h1>
+  <div class="books-search">
+    <%= form_with url: stock_moves_path, method: :get, local: true do %>
+      <div class="stocks-move-search-field">
+        <%= text_field_tag :q, params[:q], placeholder: "タイトル、移動元、移動先、在庫の数で検索" %>
+      </div>
+      <%= submit_tag "検索", class: "search-button" %>
+    <% end %>
+  </div>
 </div>
-<div class="sort">並び替え</div>
+
+<div class="sort">並び替え移動元、移動先、日時順</div>
 <div class="total-quantity-parts">件数: <%= @stock_moves.total_count %></div>
 <table class="books-table">
   <thead>

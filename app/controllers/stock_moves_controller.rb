@@ -3,11 +3,23 @@ class StockMovesController < ApplicationController
     @books = Book.all
     @stock_moves = StockMove.includes(:book, :from_location, :to_location)
     if params[:q].present?
-      @stock_moves = @stock_moves.joins(:book, :from_location)
+      @stock_moves = @stock_moves.joins(:book, :from_location, :to_location)
       if params[:q].match?(/\A\d+\z/)
-        @stock_moves = @stock_moves.where("books.title ILIKE :q OR locations.name ILIKE :q OR stock_moves.quantity = :quantity", q: "%#{params[:q]}%", quantity: params[:q].to_i)
+        @stock_moves = @stock_moves.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR to_locations_stock_moves.name ILIKE :q
+           OR stock_moves.quantity = :quantity",
+          q: "%#{params[:q]}%",
+          quantity: params[:q].to_i
+        )
       else
-        @stock_moves = @stock_moves.where("books.title ILIKE :q OR locations.name ILIKE :q", q: "%#{params[:q]}%")
+        @stock_moves = @stock_moves.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR to_locations_stock_moves.name ILIKE :q",
+          q: "%#{params[:q]}%"
+        )
       end
     end
     @stock_moves = @stock_moves.order(created_at: :desc).page(params[:page]).per(12)
