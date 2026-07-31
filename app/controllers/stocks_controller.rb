@@ -7,7 +7,7 @@ class StocksController < ApplicationController
         @stocks = @stocks.where(
           "books.title ILIKE :q
            OR locations.name ILIKE :q
-           OR stocks.quantity = :quantity", 
+           OR stocks.quantity = :quantity",
           q: "%#{params[:q]}%",
           quantity: params[:q].to_i
         )

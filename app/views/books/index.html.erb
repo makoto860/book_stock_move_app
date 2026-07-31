@@ -16,7 +16,7 @@
     <%= link_to "作成日遅い順", books_path(order: "asc") %>
   </div>
 </div>
-<div class="total-quantity-parts">件数: <%= Book.count %></div>
+<div class="total-quantity-parts">件数: <%= @books.total_count %></div>
 <table class="books-table">
   <thead>
     <tr>
