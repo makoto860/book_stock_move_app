@@ -1,8 +1,6 @@
 class Location < ApplicationRecord
   has_many :stocks, dependent: :destroy
   enum :kind, { warehouse: 0, pick: 1, customer: 2 }, prefix: true
-  scope :warehouses, -> { where(kind: "warehouse") }
-  scope :picks, -> { where(kind: "pick") }
 
   def self.warehouse
     find_by!(kind: :warehouse)

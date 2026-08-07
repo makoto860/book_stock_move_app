@@ -3,7 +3,9 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - develop1
 
 jobs:
   scan_ruby:
@@ -56,15 +58,41 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    services:
+      # GitHub ActionsでPostgreSQLコンテナを起動する設定
+      db:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: bsm_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    # RailsがPostgreSQLへ接続するための設定
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            build-essential \
+            git \
+            libyaml-dev \
+            pkg-config \
+            libpq-dev \
+            postgresql-client \
+            google-chrome-stable
 
       - name: Checkout code
         uses: actions/checkout@v6
@@ -75,10 +103,22 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Debug database connection
+        run: |
+          echo "DB_HOST=$DB_HOST"
+          env | grep DB
+          pg_isready -h localhost -U postgres || true
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in {1..30}; do
+            pg_isready -h localhost -U postgres && exit 0
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+          exit 1
+
       - name: Run tests
-        env:
-          RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests

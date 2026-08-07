@@ -38,13 +38,18 @@
   margin-top: 10px;
 }
 
+.total-quantity-parts {
+  text-align: right;
+  margin-top: 50px;
+  font-size: 40px;
+}
+
 .books-table {
   width: 90%;
   margin: 0px auto;
   margin-top: 30px;
 }
 
-.books-table th,
 .books-table td {
   text-align: center;
   border-bottom: 3px solid #ddd;
@@ -90,7 +95,7 @@
 }
 
 .pagination-link {
-  margin-top: 20px;
+  margin-top: 60px;
   text-align: center;
 }
 
@@ -151,4 +156,9 @@
   padding: 20px 30px;
   font-size: 20px;
   font-weight: bold;
+}
+
+.stocks-move-search-field input {
+  width: 300px;
+  height: 30px;
 }

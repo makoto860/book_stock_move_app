@@ -10,25 +10,26 @@
       <td><%= @stock_move.book.title %></td>
     </tr>
     <tr>
-      <th>移動元在庫</th>
+      <th>移動元の在庫数</th>
       <td><%= @stock_move.from_stock&.quantity || 0 %></td>
     </tr>
     <tr>
-      <th>移動先在庫</th>
+      <th>移動先の在庫数</th>
       <td><%= @stock_move.to_stock&.quantity || 0 %></td>
     </tr>
     <tr>
-      <th>移動元</th>
+      <th>移動元の場所</th>
       <td><%= @stock_move.from_location.name %></td>
     </tr>
     <tr>
-      <th>移動先</th>
+      <th>移動先の場所</th>
       <td><%= @stock_move.to_location.name %></td>
     </tr>
     <tr>
       <th>移動する数</th>
       <td><%= @stock_move&.quantity || 0 %></td>
     </tr>
+    <%= link_to '戻る', :back %>
   </table>
   <%= f.hidden_field :book_id %>
   <%= f.hidden_field :from_location_id %>

@@ -4,8 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  name: "倉庫"
+  kind: 0
+  code: "1"
+
+two:
+  name: "pick"
+  kind: 2
+  code: "2"

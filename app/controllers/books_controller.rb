@@ -25,8 +25,7 @@ class BooksController < ApplicationController
       @books = @books.where("#{field} LIKE ?", "%#{params[field]}%") if params[field].present?
     end
     direction = params[:order] == "asc" ? :asc : :desc
-    @books = @books.order(created_at: direction)
-    @books = @books.page(params[:page]).per(10)
+    @books = @books.order(created_at: direction).page(params[:page]).per(10)
   end
 
   def new
@@ -45,8 +44,8 @@ class BooksController < ApplicationController
 
   def show
     @stock_move = @book.stock_moves.build
-    @warehouses = Location.warehouses
-    @picks = Location.picks
+    @warehouses = Location.warehouse
+    @picks = Location.pick
   end
 
   def edit

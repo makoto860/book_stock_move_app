@@ -2,24 +2,34 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.includes(:book, :location)
     if params[:q].present?
-      q = params[:q]
-      @stocks = @stocks.joins(:book)
-      if q.match?(/\A\d+\z/)
-        @stocks = @stocks.where("books.title LIKE :q OR stocks.quantity = :quantity", q: "%#{q}%", quantity: q.to_i)
+      @stocks = @stocks.joins(:book, :location)
+      if params[:q].match?(/\A\d+\z/)
+        @stocks = @stocks.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR stocks.quantity = :quantity",
+          q: "%#{params[:q]}%",
+          quantity: params[:q].to_i
+        )
       else
-        @stocks = @stocks.where("books.title LIKE ?", "%#{q}%")
+        @stocks = @stocks.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q",
+          q: "%#{params[:q]}%"
+        )
       end
     end
 
-    @stocks =
+    direction = params[:order] == "asc" ? :asc : :desc
     case params[:sort]
-    when "quantity_desc"
-      @stocks.order(quantity: :desc)
-    when "quantity_asc"
-      @stocks.order(quantity: :asc)
+    when "quantity"
+      @stocks = @stocks.order(quantity: direction)
+    when "created_at"
+      @stocks = @stocks.order(created_at: direction)
     else
-      @stocks.order(created_at: :desc)
+      @stocks = @stocks.order(created_at: :desc)
     end
+    @stocks = @stocks.page(params[:page]).per(15)
   end
 
   def new
@@ -30,13 +40,11 @@ class StocksController < ApplicationController
 
   def create
     StockRegistrationService.call(stock_params)
-    if @stock.save
-      redirect_to stocks_path, notice: "在庫を登録しました"
-    else
-      @books = Book.all
-      @locations = Location.all
-     render :new
-    end
+    redirect_to stocks_path, notice: "在庫を登録しました"
+  rescue ActiveRecord::RecordInvalid
+    @books = Book.all
+    @locations = Location.all
+    render :new
   end
 
   private

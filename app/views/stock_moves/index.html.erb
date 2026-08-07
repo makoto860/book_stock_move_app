@@ -1,4 +1,21 @@
-<h1>在庫の移動した履歴一覧</h1>
+<div class="books-container">
+  <h1>在庫の移動した履歴一覧</h1>
+  <div class="books-search">
+    <%= form_with url: stock_moves_path, method: :get, local: true do %>
+      <div class="stocks-move-search-field">
+        <%= text_field_tag :q, params[:q], placeholder: "タイトル、移動元、移動先、在庫の数で検索" %>
+      </div>
+      <%= submit_tag "検索", class: "search-button" %>
+    <% end %>
+  </div>
+  <div class="sort-book-link-list">
+    <%= link_to "在庫数少ない順", stock_moves_path(sort: "quantity", order: "asc", q: params[:q]) %>
+    <%= link_to "在庫数多い順", stock_moves_path(sort: "quantity", order: "desc", q: params[:q]) %>
+    <%= link_to "作成日遅い順", stock_moves_path(sort: "created_at", order: "desc", q: params[:q]) %>
+    <%= link_to "作成日早い順", stock_moves_path(sort: "created_at", order: "asc", q: params[:q]) %>
+  </div>
+</div>
+<div class="total-quantity-parts">件数: <%= @stock_moves.total_count %></div>
 <table class="books-table">
   <thead>
     <tr>
@@ -6,16 +23,19 @@
       <th>移動元</th>
       <th>移動先</th>
       <th>移動した数</th>
+      <th>履歴移動日時</th>
     </tr>
   </thead>
   <tbody>
-    <% @stock_moves.each do |move| %>
+    <% @stock_moves.each do |stock_move| %>
       <tr>
-        <td><%= move.book.title %></td>
-        <td><%= move.from_location.name %></td>
-        <td><%= move.to_location.name %></td>
-        <td><%= move.quantity %></td>
+        <td><%= stock_move.book.title %></td>
+        <td><%= stock_move.from_location.name %></td>
+        <td><%= stock_move.to_location.name %></td>
+        <td><%= stock_move.quantity %></td>
+        <td><%= I18n.l(stock_move.created_at, format: :datetime_jp) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div class="pagination-link"><%= paginate @stock_moves %></div>

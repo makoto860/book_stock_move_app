@@ -1,7 +1,37 @@
 class StockMovesController < ApplicationController
   def index
     @books = Book.all
-    @stock_moves = StockMove.includes(:book, :from_location, :to_location).order(created_at: :desc)
+    @stock_moves = StockMove.includes(:book, :from_location, :to_location)
+    if params[:q].present?
+      @stock_moves = @stock_moves.joins(:book, :from_location, :to_location)
+      if params[:q].match?(/\A\d+\z/)
+        @stock_moves = @stock_moves.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR to_locations_stock_moves.name ILIKE :q
+           OR stock_moves.quantity = :quantity",
+          q: "%#{params[:q]}%",
+          quantity: params[:q].to_i
+        )
+      else
+        @stock_moves = @stock_moves.where(
+          "books.title ILIKE :q
+           OR locations.name ILIKE :q
+           OR to_locations_stock_moves.name ILIKE :q",
+          q: "%#{params[:q]}%"
+        )
+      end
+    end
+    direction = params[:order] == "asc" ? :asc : :desc
+    case params[:sort]
+    when "quantity"
+      @stock_moves = @stock_moves.order(quantity: direction)
+    when "created_at"
+      @stock_moves = @stock_moves.order(created_at: direction)
+    else
+      @stock_moves = @stock_moves.order(created_at: :desc)
+    end
+    @stock_moves = @stock_moves.page(params[:page]).per(15)
   end
 
   def new
