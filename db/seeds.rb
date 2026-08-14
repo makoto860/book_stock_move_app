@@ -33,7 +33,7 @@ customer = Location.find_or_create_by!(
 books = 3000.times.map do |i|
   {
     title: "テスト本#{i + 1}",
-    isbn: "978400000#{i.to_s}",
+    isbn: "978400000#{i}",
     rack_number: "棚番号",
     created_at: Time.current,
     updated_at: Time.current
