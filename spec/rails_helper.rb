@@ -38,6 +38,11 @@ RSpec.configure do |config|
   # factorybotを導入
   config.include FactoryBot::Syntax::Methods
 
+  # リクエストスペックにlocalhostを許可
+  config.before(:each, type: :request) do
+    host! "localhost"
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
