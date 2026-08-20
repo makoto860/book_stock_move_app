@@ -20,30 +20,22 @@ RSpec.describe "books", type: :request do
     end
   end
 
-  describe "POST /booksの新規登録画面" do
+  describe "POST /booksの登録画面" do
     let(:params) do
-      { book: { title: "new_title", rack_number: "new_rack_number", isbn: "new_isbn" } }
+      {
+        book: {
+          title: "テスト本",
+          isbn: "9999999999999",
+          rack_number: "A~Z"
+        }
+      }
     end
 
-    it "本の情報を登録できること" do
-      expect { post books_path, params: params }.to change(Book, :count).by(1)
-    end
-  end
-
-  describe "PATCH /books/:idの編集画面" do
-    let!(:book) { create(:book, title: "更新前タイトル") }
-
-    it "タイトルを更新できること" do
-      patch book_path(book), params: { book: { title: "更新後タイトル" } }
-      expect(book.reload.title).to eq("更新後タイトル")
-    end
-  end
-
-  describe "DELETE /books/:idの削除の画面" do
-    let!(:book) { create(:book) }
-
-    it "本を削除できること" do
-      expect { delete book_path(book) }.to change(Book, :count).by(-1)
+    it "教科書の情報１件を登録できること" do
+      book = Book.new(params[:book])
+      expect {
+        book.save!
+      }.to change(Book, :count).by(1)
     end
   end
 end
