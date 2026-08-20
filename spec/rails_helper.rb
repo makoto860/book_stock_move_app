@@ -38,10 +38,22 @@ RSpec.configure do |config|
   # factorybotを導入
   config.include FactoryBot::Syntax::Methods
 
-  # リクエストスペックにlocalhostを許可
   config.before(:each, type: :request) do
+    # リクエストスペックにlocalhostを許可
     host! "localhost"
+    # CSRFチェックをRequest Spec全体で無効化する
+    allow_any_instance_of(ActionController::RequestForgeryProtection)
+    .to receive(:verified_request?)
+    .and_return(true)
   end
+
+RSpec.configure do |config|
+  config.before(:each, type: :request) do
+    allow_any_instance_of(ActionController::RequestForgeryProtection)
+      .to receive(:verified_request?)
+      .and_return(true)
+  end
+end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
