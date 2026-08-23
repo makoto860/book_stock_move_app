@@ -3,6 +3,19 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require "capybara/rspec"
+require "selenium-webdriver"
+
+Capybara.register_driver :selenium_chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--disable-gpu")
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 # Prevent database truncation if the environment is production
 # Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
@@ -34,6 +47,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   # factorybotを導入
   config.include FactoryBot::Syntax::Methods
@@ -41,21 +55,17 @@ RSpec.configure do |config|
   config.before(:each, type: :request) do
     # リクエストスペックにlocalhostを許可
     host! "localhost"
-    # CSRFチェックをRequest Spec全体で無効化する
+    # 手動データ作成したためCSRFチェックをrequest_specで無効化する
     allow_any_instance_of(ActionController::RequestForgeryProtection)
     .to receive(:verified_request?)
     .and_return(true)
   end
 
-RSpec.configure do |config|
-  config.before(:each, type: :request) do
-    allow_any_instance_of(ActionController::RequestForgeryProtection)
-      .to receive(:verified_request?)
-      .and_return(true)
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome
   end
-end
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+# Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
