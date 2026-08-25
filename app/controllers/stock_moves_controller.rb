@@ -38,8 +38,15 @@ class StockMovesController < ApplicationController
 
   def new
     @stock_move = StockMove.new
-    @books = Book.all
     @locations = Location.all
+    if params[:q].present?
+      @books = Book.where(
+        "title ILIKE :q OR isbn ILIKE :q",
+        q: "%#{params[:q]}%"
+      )
+    else
+      @books = Book.none
+    end
   end
 
   def create
