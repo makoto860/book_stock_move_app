@@ -62,7 +62,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome
+    driven_by :rack_test
   end
 
 # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
