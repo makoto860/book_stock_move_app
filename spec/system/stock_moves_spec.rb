@@ -1,6 +1,51 @@
 require 'rails_helper'
 
 RSpec.describe "stock_moves", type: :system do
+  describe "在庫履歴の一覧画面" do
+    let!(:stock_move) do
+      create(
+        :stock_move,
+        book: book,
+        from_location: from_location,
+        to_location: to_location,
+        quantity: 1,
+        move_type: "transfer"
+      )
+    end
+
+    before do
+      visit stock_moves_path
+    end
+
+    it "タイトルが表示されること" do
+      expect(page).to have_content(book.title)
+    end
+
+    it "移動元が表示されること" do
+      expect(page).to have_content(stock_move.from_location.name)
+    end
+
+    it "移動先が表示されること" do
+      expect(page).to have_content(stock_move.to_location.name)
+    end
+
+    it "数が表示されること" do
+      expect(page).to have_content(stock_move.quantity)
+    end
+
+    it "作成日が表示されること" do
+      expect(page).to have_content(I18n.l(stock_move.created_at, format: :datetime_jp))
+    end
+
+    it "件数が表示されること" do
+      expect(page).to have_content("件数")
+    end
+
+    it "ページネーションが表示されること" do
+      expect(page).to have_css(".pagination-link .pagination")
+    end
+  end
+
   let!(:book) { create(:book) }
   let!(:from_location) { create(:location, :warehouse) }
   let!(:to_location) { create(:location, :pick) }
@@ -13,22 +58,6 @@ RSpec.describe "stock_moves", type: :system do
     select book.title, from: "stock_move_book_id"
     select from_location.name, from: "stock_move_from_location_id"
     select to_location.name, from: "stock_move_to_location_id"
-  end
-
-  describe "在庫移動確認画面" do
-    let!(:book) { create(:book) }
-    let!(:from_location) { create(:location, :warehouse) }
-    let!(:to_location) { create(:location, :pick) }
-    let!(:from_stock) do
-      create(:stock, book: book, location: from_location, quantity: 3)
-    end
-
-    before do
-      visit stock_moves_path
-      select book.title, from: "stock_move_book_id"
-      select from_location.name, from: "stock_move_from_location_id"
-      select to_location.name, from: "stock_move_to_location_id"
-    end
   end
 
   describe "在庫を移動する画面" do

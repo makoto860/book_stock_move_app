@@ -24,21 +24,19 @@ RSpec.describe "stocks/", type: :system do
       expect(page).to have_field("場所")
     end
 
-    context "在庫の登録後のとき" do
-      before do
-        select book.title, from: "stock_book_id"
-        select location.name, from: "stock_location_id"
-        fill_in "stock_quantity", with: 1
-        click_button "教科書を登録する"
-      end
+    before do
+      select book.title, from: "stock_book_id"
+      select location.name, from: "stock_location_id"
+      fill_in "stock_quantity", with: 1
+      click_button "教科書を登録する"
+    end
 
-      it "教科書を登録するボタンを押すと在庫一覧画面に遷移すること" do
-        expect(page).to have_current_path(stocks_path)
-      end
+    it "教科書を登録するボタンを押すと在庫一覧画面に遷移すること" do
+      expect(page).to have_current_path(stocks_path)
+    end
 
-      it "成功メッセージが表示されること" do
-        expect(page).to have_content("在庫を登録しました")
-      end
+    it "成功メッセージが表示されること" do
+      expect(page).to have_content("在庫を登録しました")
     end
   end
 end
