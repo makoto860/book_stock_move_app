@@ -1,20 +1,22 @@
-<h1>教科書の在庫を追加する</h1>
-<%= form_with model: @stock do |f| %>
-  <table class="books-table">
-    <tr>
-      <th>ID検索</th>
-      <td>
-        <%= text_field_tag :book_id_search, nil, id: "book-id-search", placeholder: "教科書IDを入力してください" %>
-      </td>
-    </tr>
-    <tr>
-      <th><%= f.label :location_id, "場所" %></th>
-      <td><%= f.collection_select :location_id, @locations, :id, :name %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :quantity, "教科書の数" %></th>
-      <td><%= f.number_field :quantity, min: 1 %></td>
-    </tr>
-  </table>
-  <%= f.submit "教科書を登録する", class: "books-button" %>
-<% end %>
+<div class="all-container">
+  <h1>教科書の在庫を追加する</h1>
+  <%= form_with model: @stock do |f| %>
+    <table class="books-table">
+      <tr>
+        <th>ID検索</th>
+        <td>
+          <%= text_field_tag :book_id_search, nil, id: "book-id-search", placeholder: "教科書IDを入力してください" %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :location_id, "場所" %></th>
+        <td><%= f.collection_select :location_id, @locations, :id, :name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :quantity, "教科書の数" %></th>
+        <td><%= f.number_field :quantity, min: 1 %></td>
+      </tr>
+    </table>
+    <%= f.submit "教科書を登録する", class: "books-button" %>
+  <% end %>
+</div>
