@@ -6,8 +6,9 @@ class StockTransferService
     qty  = params[:quantity].to_i
 
     ActiveRecord::Base.transaction do
-      from_stock = Stock.find_by!(book: book, location: from)
-      to_stock   = Stock.find_or_initialize_by(book: book, location: to)
+      from_stock = Stock.find_by(book: book, location: from)
+      raise "在庫に追加していないです" if from_stock.nil?
+      to_stock = Stock.find_or_initialize_by(book: book, location: to)
       to_stock.quantity ||= 0
 
       from_stock.with_lock do
@@ -17,6 +18,7 @@ class StockTransferService
         from_stock.save!
         to_stock.save!
       end
+
       StockMove.create!(book: book, from_location: from, to_location: to, quantity: qty, move_type: :transfer)
     end
   end
