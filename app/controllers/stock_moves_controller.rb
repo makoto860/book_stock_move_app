@@ -51,6 +51,9 @@ class StockMovesController < ApplicationController
 
   def confirm
     @stock_move = StockMove.new(stock_move_params)
+    if params[:book_id_search].present?
+      @stock_move.book = Book.find(params[:book_id_search])
+    end
   end
 
   private

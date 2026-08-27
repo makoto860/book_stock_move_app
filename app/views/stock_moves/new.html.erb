@@ -2,8 +2,10 @@
 <%= form_with model: @stock_move, url: confirm_stock_moves_path, method: :get do |f| %>
   <table class="books-table">
     <tr>
-      <th><%= f.label :book_id, "タイトル" %></th>
-      <td><%= f.collection_select :book_id, @books, :id, :title %></td>
+      <th>ID検索</th>
+        <td>
+          <%= text_field_tag :book_id_search, nil, id: "book-id-search", placeholder: "教科書IDを入力してください" %>
+        </td>
     </tr>
     <tr>
       <th><%= f.label :from_location_id, "移動元" %></th>
