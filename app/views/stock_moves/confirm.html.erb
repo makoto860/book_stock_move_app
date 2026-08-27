@@ -1,40 +1,42 @@
-<h1>在庫移動履歴の確認画面</h1>
-<%= form_with model: @stock_move, url: stock_moves_path, method: :post, local: true, data: { turbo: false } do |f| %>
-  <table class="books-table">
-    <tr>
-      <th>本のID</th>
-      <td><%= @stock_move.book.id %></td>
-    </tr>
-    <tr>
-      <th>タイトル</th>
-      <td><%= @stock_move.book.title %></td>
-    </tr>
-    <tr>
-      <th>移動元の在庫数</th>
-      <td><%= @stock_move.from_stock&.quantity || 0 %></td>
-    </tr>
-    <tr>
-      <th>移動先の在庫数</th>
-      <td><%= @stock_move.to_stock&.quantity || 0 %></td>
-    </tr>
-    <tr>
-      <th>移動元の場所</th>
-      <td><%= @stock_move.from_location.name %></td>
-    </tr>
-    <tr>
-      <th>移動先の場所</th>
-      <td><%= @stock_move.to_location.name %></td>
-    </tr>
-    <tr>
-      <th>移動する数</th>
-      <td><%= @stock_move&.quantity || 0 %></td>
-    </tr>
-    <%= link_to '戻る', :back %>
-  </table>
-  <%= f.hidden_field :book_id %>
-  <%= f.hidden_field :from_location_id %>
-  <%= f.hidden_field :to_location_id %>
-  <%= f.hidden_field :quantity %>
-  <%= f.hidden_field :move_type, value: "transfer" %>
-  <%= f.submit "在庫の移動を確定する", class: "books-button" %>
-<% end %>
+<div class="books-container">
+  <h1>在庫移動履歴の確認画面</h1>
+  <%= form_with model: @stock_move, url: stock_moves_path, method: :post, local: true, data: { turbo: false } do |f| %>
+    <table class="books-table">
+      <tr>
+        <th>本のID</th>
+        <td><%= @stock_move.book.id %></td>
+      </tr>
+      <tr>
+        <th>タイトル</th>
+        <td><%= @stock_move.book.title %></td>
+      </tr>
+      <tr>
+        <th>移動元の在庫数</th>
+        <td><%= @stock_move.from_stock&.quantity || 0 %></td>
+      </tr>
+      <tr>
+        <th>移動先の在庫数</th>
+        <td><%= @stock_move.to_stock&.quantity || 0 %></td>
+      </tr>
+      <tr>
+        <th>移動元の場所</th>
+        <td><%= @stock_move.from_location.name %></td>
+      </tr>
+      <tr>
+        <th>移動先の場所</th>
+        <td><%= @stock_move.to_location.name %></td>
+      </tr>
+      <tr>
+        <th>移動する数</th>
+        <td><%= @stock_move&.quantity || 0 %></td>
+      </tr>
+      <%= f.hidden_field :book_id %>
+      <%= f.hidden_field :from_location_id %>
+      <%= f.hidden_field :to_location_id %>
+      <%= f.hidden_field :quantity %>
+      <%= f.hidden_field :move_type, value: "transfer" %>
+    </table>
+    <p class="books-link"><%= link_to '戻る', :back %></p>
+    <%= f.submit "在庫の移動を確定する", class: "books-button" %>
+  <% end %>
+</div>
