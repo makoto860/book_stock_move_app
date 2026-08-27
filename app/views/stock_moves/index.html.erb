@@ -14,6 +14,7 @@
     <%= link_to "作成日遅い順", stock_moves_path(sort: "created_at", order: "desc", q: params[:q]) %>
     <%= link_to "作成日早い順", stock_moves_path(sort: "created_at", order: "asc", q: params[:q]) %>
   </div>
+  <div class="pagination-link"><%= paginate @stock_moves %></div>
 </div>
 <div class="total-quantity-parts">件数: <%= @stock_moves.total_count %></div>
 <table class="books-table">
@@ -38,4 +39,3 @@
     <% end %>
   </tbody>
 </table>
-<div class="pagination-link"><%= paginate @stock_moves %></div>
