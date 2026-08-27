@@ -45,7 +45,7 @@ class StockMovesController < ApplicationController
   def create
     StockTransferService.call(stock_move_params)
     redirect_to stock_moves_path, notice: "教科書を移動しました"
-    rescue => e
+  rescue => e
     redirect_to confirm_stock_moves_path(stock_move: stock_move_params.to_h), alert: e.message
   end
 

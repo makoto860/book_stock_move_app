@@ -63,6 +63,7 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system) do
     driven_by :rack_test
+    Capybara.app_host = "http://localhost:3000"
   end
 
 # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
