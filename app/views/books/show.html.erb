@@ -1,44 +1,46 @@
-<h1>教科書の情報</h1>
-<table class="books-table", style="<%= book_table_style(@book) %>">
-  <tr>
-    <th>本のID</th>
-    <td><%= @book.id %></td>
-  </tr>
-  <tr>
-    <th>タイトル</th>
-    <td><%= @book.title %></td>
-  </tr>
-  <tr>
-    <th>棚の番号</th>
-    <td><%=@book.rack_number %></td>
-  </tr>
-  <tr>
-    <th>ISBN</th>
-    <td><%= @book.isbn %></td>
-  </tr>
-  <tr>
-    <th>備考欄</th>
-    <td><%= @book.note %></td>
-  </tr>
-  <tr>
-    <th>作成日</th>
-    <td><%= I18n.l(@book.created_at, format: :datetime_jp) %></td>
-  </tr>
-  <tr>
-    <th>更新日</th>
-    <td><%= I18n.l(@book.updated_at, format: :datetime_jp) %></td>
-  </tr>
-  <tr>
-    <th>注文日時</th>
-    <td><%= @book.formatted_order_date_time %></td>
-  </tr>
-  <tr>
-    <th>取り寄せ日時</th>
-    <td><%= format_special_order_date_time(@book) %></td>
-  </tr>
-  <tr>
-    <th>注文日時</th>
-    <td><%= format_order_date_time(@book) %></td>
-  </tr>
-</table>
-<p class="books-link"><%= link_to "教科書一覧", books_path %></p>
+<div class="books-container">
+  <h1>教科書の情報</h1>
+  <table class="books-table", style="<%= book_table_style(@book) %>">
+    <tr>
+      <th>本のID</th>
+      <td><%= @book.id %></td>
+    </tr>
+    <tr>
+      <th>タイトル</th>
+      <td><%= @book.title %></td>
+    </tr>
+    <tr>
+      <th>棚の番号</th>
+      <td><%=@book.rack_number %></td>
+    </tr>
+    <tr>
+      <th>ISBN</th>
+      <td><%= @book.isbn %></td>
+    </tr>
+    <tr>
+      <th>備考欄</th>
+      <td><%= @book.note %></td>
+    </tr>
+    <tr>
+      <th>作成日</th>
+      <td><%= I18n.l(@book.created_at, format: :datetime_jp) %></td>
+    </tr>
+    <tr>
+      <th>更新日</th>
+      <td><%= I18n.l(@book.updated_at, format: :datetime_jp) %></td>
+    </tr>
+    <tr>
+      <th>注文日時</th>
+      <td><%= @book.formatted_order_date_time %></td>
+    </tr>
+    <tr>
+      <th>取り寄せ日時</th>
+      <td><%= format_special_order_date_time(@book) %></td>
+    </tr>
+    <tr>
+      <th>注文日時</th>
+      <td><%= format_order_date_time(@book) %></td>
+    </tr>
+  </table>
+  <p class="books-link"><%= link_to "教科書一覧", books_path %></p>
+</div>
