@@ -94,7 +94,6 @@
 
 .pagination-link {
   margin-top: 60px;
-  text-align: center;
 }
 
 .pagination-link a,
@@ -110,10 +109,6 @@
 .pagination-link .current {
   background-color: #16a34a;
   color: #fff;
-}
-
-#scanner-container {
-  text-align: center;
 }
 
 #reader {
