@@ -39,12 +39,17 @@ class StocksController < ApplicationController
   end
 
   def create
-    StockRegistrationService.call(stock_params)
-    redirect_to stocks_path, notice: "在庫を登録しました"
-  rescue ActiveRecord::RecordInvalid
-    @books = Book.all
-    @locations = Location.all
-    render :new
+    book = Book.find(params[:book_id_search])
+    @stock = Stock.new(stock_params)
+    @stock.book = book
+
+    if @stock.save
+      redirect_to stocks_path, notice: "在庫を追加しました"
+    else
+      flash.now[:alert] = @stock.errors.full_messages.to_sentence
+      @locations = Location.all
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
