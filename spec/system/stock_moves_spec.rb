@@ -70,14 +70,21 @@ RSpec.describe "stock_moves", type: :system do
         expect(page).to have_current_path(stock_moves_path)
         expect(page).to have_content("教科書を移動しました")
       end
+    end
 
-      it "教科書のタイトルが表示されること" do
+    context "在庫不足のとき" do
+      before do
+        fill_in "stock_move_quantity", with: 4
+        click_button "在庫を移動する"
+        click_button "在庫の移動を確定する"
       end
 
-      it "教科書のIDが表示されること" do
+      it "在庫不足のメッセージが表示されること" do
+        expect(page).to have_content("在庫不足です")
       end
 
-      it "在庫の移動を確定するを押すと在庫移動履歴一覧へ遷移すること" do
+      it "確認画面へ戻ること" do
+        expect(page).to have_current_path(confirm_stock_moves_path, ignore_query: true)
       end
     end
   end
