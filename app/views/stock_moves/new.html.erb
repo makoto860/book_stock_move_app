@@ -1,24 +1,26 @@
-<h1>教科書の在庫を移動する</h1>
-<%= form_with model: @stock_move, url: confirm_stock_moves_path, method: :get do |f| %>
-  <table class="books-table">
-    <tr>
-      <th>ID検索</th>
-      <td>
-        <%= text_field_tag :book_id_search, nil, id: "book-id-search", placeholder: "教科書IDを入力してください", class: "id-search-field" %>
-      </td>
-    </tr>
-    <tr>
-      <th><%= f.label :from_location_id, "移動元" %></th>
-      <td><%= f.collection_select :from_location_id, @locations, :id, :name %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :to_location_id, "移動先" %></th>
-      <td><%= f.collection_select :to_location_id, @locations, :id, :name %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :quantity, "数" %></th>
-      <td><%= f.number_field :quantity, min: 1, required: true %></td>
-    </tr>
-  </table>
-  <%= f.submit "在庫を移動する", class: "books-button" %>
-<% end %>
+<div class="all-container">
+  <h1>教科書の在庫を移動する</h1>
+  <%= form_with model: @stock_move, url: confirm_stock_moves_path, method: :get do |f| %>
+    <table class="books-table">
+      <tr>
+        <th>ID検索</th>
+        <td>
+          <%= text_field_tag :book_id_search, nil, id: "book-id-search", placeholder: "教科書IDを入力してください", class: "id-search-field" %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :from_location_id, "移動元" %></th>
+        <td><%= f.collection_select :from_location_id, @locations, :id, :name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :to_location_id, "移動先" %></th>
+        <td><%= f.collection_select :to_location_id, @locations, :id, :name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :quantity, "数" %></th>
+        <td><%= f.number_field :quantity, min: 1, required: true %></td>
+      </tr>
+    </table>
+    <%= f.submit "在庫を移動する", class: "books-button" %>
+  <% end %>
+</div>
