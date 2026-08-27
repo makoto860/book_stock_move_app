@@ -30,3 +30,8 @@ header {
   display: flex;
   margin-left: 10px;
 }
+
+#book-id-search {
+  height: 30px;
+  width: 200px;
+}
