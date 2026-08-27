@@ -19,6 +19,10 @@ header {
   margin-bottom: 20px;
 }
 
+.all-container {
+  text-align: center;
+}
+
 .link-list a {
   color: white;
   text-decoration: none;
