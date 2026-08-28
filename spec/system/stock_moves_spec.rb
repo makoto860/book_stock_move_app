@@ -58,6 +58,11 @@ RSpec.describe "stock_moves", type: :system do
     it "在庫を移動するボタンが表示されること" do
       expect(page).to have_button("在庫を移動する")
     end
+
+    it "在庫を移動するボタンを押すと確認画面に遷移すること" do
+      click_button "在庫を移動する"
+      expect(page).to have_current_path(confirm_stock_moves_path, ignore_query: true)
+    end
   end
 
   describe "在庫移動確認画面" do
@@ -67,6 +72,9 @@ RSpec.describe "stock_moves", type: :system do
     let!(:stock_move) do
       create(:stock_move, from_location_id: from_location.id, to_location_id: to_location.id, quantity: 3)
     end
+    let!(:stock) do
+      create(:stock, book: book, location: from_location, quantity: 4)
+    end
 
     before do
       visit confirm_stock_moves_path(
@@ -74,7 +82,9 @@ RSpec.describe "stock_moves", type: :system do
         stock_move: {
           book_id: book.id,
           from_location_id: from_location.id,
-          to_location_id: to_location.id
+          to_location_id: to_location.id,
+          quantity: 3,
+          move_type: "transfer"
         }
       )
     end
@@ -102,7 +112,10 @@ RSpec.describe "stock_moves", type: :system do
     it "在庫の移動を確定するボタンがあること" do
       expect(page).to have_button("在庫の移動を確定する")
     end
+
+    it "在庫の移動を確定するボタンをクリックすると在庫履歴の一覧画面に遷移すること" do
+      click_button "在庫の移動を確定する"
+      expect(page).to have_current_path(stock_moves_path)
+    end
   end
 end
-
- 
