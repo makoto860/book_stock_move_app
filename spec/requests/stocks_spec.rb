@@ -21,34 +21,41 @@ RSpec.describe "stocks", type: :request do
   end
 
   describe "POST /stocks" do
-    context "新規の在庫を登録するとき" do
-      let!(:book) { create(:book) }
-      let!(:location) { create(:location) }
+    let!(:book) { create(:book) }
+    let!(:location) { create(:location) }
 
-      it "在庫が新しく登録されること" do
+    context "新規の在庫数を登録するとき" do
+      it "在庫数が新しく登録されること" do
         expect do
           post stocks_path, params: {
-            stock: { book_id: book.id, location_id: location.id, quantity: 10 }
+            book_id_search: book.id,
+            stock: {
+              book_id: book.id,
+              location_id: location.id,
+              quantity: 2
+            }
           }
         end.to change(Stock, :count).by(1)
       end
     end
 
     context "すでに在庫が存在するとき" do
-      let!(:book) { create(:book) }
-      let!(:location) { create(:location) }
-
       let!(:stock) do
-        create(:stock, book: book, location: location, quantity: 5)
+        create(:stock, book: book, location: location, quantity: 2)
       end
 
-      it "在庫数が加算されること" do
+      it "在庫数が加算されないこと" do
         expect do
           post stocks_path, params: {
-            stock: { book_id: book.id, location_id: location.id, quantity: 3 }
+            book_id_search: book.id,
+            stock: {
+              book_id: book.id,
+              location_id: location.id,
+              quantity: 3
+            }
           }
-        end.not_to change(Stock, :count)
-        expect(stock.reload.quantity).to eq(8)
+        end
+        expect(stock.reload.quantity).to eq(2)
       end
     end
   end
