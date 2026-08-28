@@ -56,9 +56,7 @@ RSpec.configure do |config|
     # リクエストスペックにlocalhostを許可
     host! "localhost"
     # 手動データ作成したためCSRFチェックをrequest_specで無効化する
-    allow_any_instance_of(ActionController::RequestForgeryProtection)
-    .to receive(:verified_request?)
-    .and_return(true)
+    allow_any_instance_of(ActionController::RequestForgeryProtection).to receive(:verified_request?).and_return(true)
   end
 
   config.before(:each, type: :system) do
