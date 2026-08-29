@@ -14,13 +14,13 @@ RSpec.describe "books", type: :request do
       expect(response.body).to include(book.title)
       expect(response.body).to include(book.rack_number)
       expect(response.body).to include(book.isbn)
-      expect(response.body).to include( I18n.l(book.created_at, format: :datetime_jp) )
+      expect(response.body).to include(I18n.l(book.created_at, format: :datetime_jp))
     end
   end
 
   describe "POST /booksの登録画面" do
     let(:params) do
-      { book: { title: "教科書名", isbn: "9999999999999", rack_number: "A~Z"} }
+      { book: { title: "教科書名", isbn: "9999999999999", rack_number: "A~Z" } }
     end
 
     it "教科書の情報１件を登録できること" do
