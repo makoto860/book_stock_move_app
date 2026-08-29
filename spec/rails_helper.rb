@@ -64,7 +64,7 @@ RSpec.configure do |config|
     Capybara.app_host = "http://localhost:3000"
   end
 
-# Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
