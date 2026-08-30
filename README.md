@@ -57,8 +57,9 @@
 - GitHub（ソース管理）
 - CircleCI（CI/CDによる自動テスト）
 - TypeScript（ISBN読み取り画面の構築）
-- html5-qrcode
+- html5-qrcode（QRコードのスキャン）
 - Google Books API（本の情報を連携）
+- rspec（本当に動くかテストを実装）
 
 ## 今後の改善点
 在庫データが増加した場合でも安定して動作するシステムを目指しています。
@@ -78,8 +79,10 @@
   本番環境（Heroku）でPostgreSQLを利用するため導入
 - rails-i18n  
   バリデーションメッセージや表示を日本語化し、ユーザーの可読性を向上させるため使用
-- Kaminari
+- Kaminari  
   データの膨大性により見た目が崩れないように使用
+- rails-i18n  
+  見やすくするため日本語で使用
 
 # 紹介画像
 ![トップ画面](app/assets/images/top.jpeg)

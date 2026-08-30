@@ -1,0 +1,5 @@
+3499; 0 16391 TABLE DATA public books postgres
+3501; 0 16407 TABLE DATA public locations postgres
+3503; 0 16423 TABLE DATA public stock_moves postgres
+3505; 0 16444 TABLE DATA public stocks postgres
+3507; 0 16461 TABLE DATA public users postgres
